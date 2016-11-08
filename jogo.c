@@ -21,57 +21,19 @@
 * ----- Aviso -----
 * Lembre de não colocar ç e acento!
 */
+
 #include <stdio.h>
 #include <stdlib.h>
+// jogo
+#include "jogodavelha.h"
 
-// as paradas
-
-void menu();
-
-
-
-// Menu jogo da velha
-void menu()
-{
-int valormenu = 0;
-
-// PRINT MENU
-printf("     _                         _        __     __   _ _           \n");
-printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
-printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
-printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
-printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
-printf("             |___/\n\n");
-
-
-printf("\t[1] JOGAR\n\t[2] RANK\n\t[3] CREDITOS\n");
-printf("Escolha uma opcao: ");
-
-// SWITCH MENU
-scanf("%d", &valormenu);
-
-switch (valormenu) 
-{
-	case 1:
-		printf("chamar funcao para jogar\n");
-		break;
-	case 2:
-		printf("print Rank\n");
-		break;
-	case 3:
-		printf("Creditos!\n");
-		break;
-	default:
-		printf("Valor informado nao eh valido!\n");
-		menu();
-}
-}
 // main
 int main() {
-	menu();
+	atribui(3, 1, 2);
+	atribui(1, 1, 1);
+	startjogo();
+	mostramatriz();
+	//menu();
 	return 0;
 }
-
-
-
 
