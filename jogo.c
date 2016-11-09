@@ -29,11 +29,9 @@
 
 // main
 int main() {
-	atribui(3, 1, 2);
-	atribui(1, 1, 1);
-	startjogo();
+	menu();
 	mostramatriz();
-	//menu();
+
 	return 0;
 }
 
