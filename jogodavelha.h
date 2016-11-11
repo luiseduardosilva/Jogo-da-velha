@@ -9,6 +9,9 @@
 // MATRIZ - JOGO!
 int matriz[3][3];
 
+// Quantas vezes cada jogador jogou;
+int contjogador1 = 0;
+int contjogador2 = 0;
 // ================================================*
 void menu();
 void startjogo();
@@ -60,9 +63,12 @@ void startjogo() {
 	// var jogadores
 	char jogador1[10];
 	char jogador2[10];
-	int posx = 0;
-	int posy = 0;
+	// Linha e Coluna, j & i;
+	int linha = 0;
+	int coluna = 0;
+	// Contador
 	int cont = 0;
+	// variave oi é só um teste!
 	int oi = 1;
 	// Nome dos jogadores
 	printf("Nome do jogador 1 para ser (X)\n");
@@ -70,46 +76,55 @@ void startjogo() {
 	printf("Nome do jogador 1 para ser (O)\n");
 	scanf(" %[^\n]s", jogador2);
 	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
-	while (cont != 9){
-		cont++;
+	// 9 é o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
+	for (cont = 0; cont < 3; cont++)// valor 3 para ser + rapido
+	{
+		// variavel de teste!
 		oi++;
 		printf("qual posicao deseja jogar?\n");
+		// temporario só pra dizer qual vez tá;
 		printf("%d\n", cont);
 			if (oi % 2 == 0){
-				scanf("%d %d", &posx, &posy);
-				(posy && posx != 1 || 2 || 3) ? (printf("erro\n")) : (printf("foi\n"));
-				atribui(1, posx, posy);
+				scanf("%d %d", &linha, &coluna);
+				atribui(1, linha, coluna);
 			}
 			else {
-				scanf("%d %d", &posx, &posy);
-				(posy && posx != 1 || 2 || 3) ? (printf("erro\n")) : (printf("Foi\n"));
-				atribui(2, posx, posy);
+				scanf("%d %d", &linha, &coluna);
+				atribui(2, linha, coluna);
 			}
+		mostramatriz();
 	}
 }
 
 
 // ATRIBUIR VALOR A MATRIZ & POSICAO DA MATRIZ
-void atribui(int valor, int x, int y)
+void atribui(int valor, int linha, int coluna)
 {
-	// x-1 e y-1 pq começa em [0] [0]
-	matriz[x-1][y-1] = valor;
+	// linha-1 e coluna-1 pq começa em [0] [0]
+	matriz[linha-1][coluna-1] = valor;
 }
 
 
 // MOSTRA A MATRIZ, JOGO DA VELHA...
 /*
 * Falta colocar as | e ___ pra ficar bonito...
+	
+	1 | 2 | 1
+	1 | 2 | 1
+ 	2 | 1 | 2
+
 */
 void mostramatriz()
 {
-	int x = 0;
-	int y = 0;
-	for ( x=0; x<3; x++){
+	// Linha e Coluna;
+	//   i   &   J
+	int linha = 0;
+	int coluna = 0;
+	for ( linha=0; linha<3; linha++){
 		printf("\n");
-		for ( y=0; y<3; y++)
+		for ( coluna=0; coluna<3; coluna++)
 	{
-     printf ("%d", matriz[x][y]);
+     printf ("%d", matriz[linha][coluna]);
   	}
   }
   printf("\n");
