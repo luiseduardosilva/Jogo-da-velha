@@ -16,6 +16,7 @@ int contjogador2 = 0;
 // Nome dos Jogadores, [10] pouco? muda ai...
 char jogador1[10+1];
 char jogador2[10+1];
+
 // ================================================*
 void menu();
 void startjogo();
@@ -63,17 +64,14 @@ void menu()
 
 
 
-// INICIAR O JOGO, NOMES DOS 2 JOGADORES e qual vai ser "X" e "O".
+// INICIAR O JOGO, NOMES DOS 2 JOGADORES e quem vai ser "X" e "O".
 void startjogo() {	
 	// Linha e Coluna, j & i;
 	int linha = 0;
 	int coluna = 0;
 	
-	// Contador
-	int cont = 0;
-	
 	// Verifica se é o jogador 1 ou 2, pode ser modificado depois.
-	int jogador = 1;
+	int jogador = 0;
 	
 	// Nome dos jogadores
 	printf("Nome do jogador 1 para ser (X)\n");
@@ -82,8 +80,8 @@ void startjogo() {
 	scanf(" %[^\n]s", jogador2);
 	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
 	
-	// 9 é o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
-	for (cont = 0; cont < 3; cont++, jogador++)// valor 3 para ser + rapido
+	// 9 jogador o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
+	for (jogador = 0; jogador < 3; jogador++)// valor 3 para ser + rapido
 	{
 		printf("Qual posicao deseja jogar?\n");
 		// temporario só pra dizer qual vez tá;
@@ -94,18 +92,26 @@ void startjogo() {
 		* porem podia ter um 1+2 = 3.						*
 		*													*
 		****************************************************/
-		// tem um bug nesse ternario...
-		printf("%d\n", cont);
-			if (jogador % 2 == 0){
-				scanf("%d %d", &linha, &coluna);
-					((linha >= 1) || (linha <= 3) || (coluna >= 1) || (coluna <= 3)) ? (printf("foi\n")) : (printf("ops\n"));
-				atribui(1, linha, coluna, 1);
-			}
-			else {
-				scanf("%d %d", &linha, &coluna);
-					((linha >= 1) || (linha <= 3) || (coluna >= 1) || (coluna <= 3)) ? (printf("foi\n")) : (printf("ops\n"));
-					//(linha >= 1 || linha <= 3 || coluna >= 1 || coluna <= 3) ? (printf("foi\n")) : (printf("ops\n"));
-				atribui(5, linha, coluna, 2);
+		printf("%d\n", jogador);
+		if (jogador % 2 == 0)
+		{
+			scanf("%d %d", &linha, &coluna);
+			printf("Jogador 1\n");
+			/*Ternario coluna e linha >= 1 && coluna elinha >=1;
+			* Caso jogador informe um valor errado o jogo vai entender e vai pedir pra ele jogar novamente;
+			* jogador --; não vai mudar de jogador;
+			* contjogador1 & contjogador2 para deixar certo a contagem de qts vezes cada jogador jogou.
+			*/ 
+			(linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3) ? (printf("foi\n")) : (printf("Valor informado nao eh valido\n"), jogador--, contjogador1--);
+			atribui(1, linha, coluna, 1);
+		}
+
+		else {
+			scanf("%d %d", &linha, &coluna);
+			printf("Jogador 2\n");
+			// ternario coluna e linha >= 1 && coluna elinha >=1;
+			(linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3) ? (printf("foi\n")) : (printf("Valor informado nao eh valido\n"), jogador--, contjogador2--);
+			atribui(1, linha, coluna, 2);
 			}
 		mostramatriz();
 	}
