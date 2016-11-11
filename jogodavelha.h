@@ -110,6 +110,7 @@ void startjogo() {
 				if ((matriz[linha][coluna]) == 0)
 				{
 					printf("O valor tá ZERO %d\n", (matriz[linha][coluna]));
+					atribui(1, linha, coluna, 1);
 				}
 				else
 				{
@@ -125,7 +126,7 @@ void startjogo() {
 				jogador--;
 				contjogador1--;
 			}
-			atribui(1, linha, coluna, 1);
+			
 			}
 		else {
 			scanf("%d %d", &linha, &coluna);
@@ -136,6 +137,7 @@ void startjogo() {
 				if ((matriz[linha][coluna]) == 0)
 				{
 					printf("O valor tá ZERO %d\n", (matriz[linha][coluna]));
+					atribui(1, linha, coluna, 2);
 				}
 				else
 				{
@@ -151,8 +153,8 @@ void startjogo() {
 				jogador--;
 				contjogador2--;	
 			}
-			atribui(1, linha, coluna, 2);
-			}
+			
+		}
 		mostramatriz();
 	}
 }
