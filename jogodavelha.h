@@ -73,7 +73,10 @@ void startjogo() {
 	// Verifica se é o jogador 1 ou 2, pode ser modificado depois.
 	int jogador = 0;
 	
-	// Nome dos jogadores
+	/*
+	* Nome do jogador 1 e 2
+	* " %[^\n]s" serve para não pular a linha quando tiver nome com espaço.
+	*/
 	printf("Nome do jogador 1 para ser (X)\n");
 	scanf(" %[^\n]s", jogador1);
 	printf("Nome do jogador 1 para ser (O)\n");
@@ -96,21 +99,58 @@ void startjogo() {
 		if (jogador % 2 == 0)
 		{
 			scanf("%d %d", &linha, &coluna);
-			printf("Jogador 1\n");
-			/*Ternario coluna e linha >= 1 && coluna elinha >=1;
+			printf("----\nJogador 1\n");
+			/*coluna e linha >= 1 && coluna e linha >=1;
 			* Caso jogador informe um valor errado o jogo vai entender e vai pedir pra ele jogar novamente;
 			* jogador --; não vai mudar de jogador;
 			* contjogador1 & contjogador2 para deixar certo a contagem de qts vezes cada jogador jogou.
 			*/ 
-			(linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3) ? (printf("foi\n")) : (printf("Valor informado nao eh valido\n"), jogador--, contjogador1--);
+			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
+			{
+				if ((matriz[linha][coluna]) == 0)
+				{
+					printf("O valor tá ZERO %d\n", (matriz[linha][coluna]));
+				}
+				else
+				{
+					printf("nao ta zero n\n%d", (matriz[linha][coluna]));
+					jogador--;
+					contjogador1--;
+				
+				}
+			}
+			else
+			{
+				printf("--\nValor informado nao eh valido\n");
+				jogador--;
+				contjogador1--;
+			}
 			atribui(1, linha, coluna, 1);
-		}
-
+			}
 		else {
 			scanf("%d %d", &linha, &coluna);
 			printf("Jogador 2\n");
-			// ternario coluna e linha >= 1 && coluna elinha >=1;
-			(linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3) ? (printf("foi\n")) : (printf("Valor informado nao eh valido\n"), jogador--, contjogador2--);
+			// coluna e linha >= 1 && coluna e linha >=1;
+			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
+			{
+				if ((matriz[linha][coluna]) == 0)
+				{
+					printf("O valor tá ZERO %d\n", (matriz[linha][coluna]));
+				}
+				else
+				{
+					printf("nao ta zero n\n%d", (matriz[linha][coluna]));
+					jogador--;
+					contjogador2--;	
+				}
+
+			}
+			else 
+			{
+				printf("--\nValor informado nao eh valido\n");
+				jogador--;
+				contjogador2--;	
+			}
 			atribui(1, linha, coluna, 2);
 			}
 		mostramatriz();
@@ -118,9 +158,10 @@ void startjogo() {
 }
 
 
+
 /*
 * Função criada para atribuir valores a matriz(jogo da velha)
-* e fazer a contagem de quantas vezes o jogador jogou.
+* e fazer a contagem de quantas vezes cada jogador jogou.
 */
 void atribui(int valor, int linha, int coluna, int player)
 {
