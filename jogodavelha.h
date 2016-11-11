@@ -12,11 +12,16 @@ int matriz[3][3];
 // Quantas vezes cada jogador jogou;
 int contjogador1 = 0;
 int contjogador2 = 0;
+
+// Nome dos Jogadores, [10] pouco? muda ai...
+char jogador1[10+1];
+char jogador2[10+1];
 // ================================================*
 void menu();
 void startjogo();
-void atribui(int valor, int x, int y);
+void atribui(int valor, int linha, int coluna, int player);
 void mostramatriz();
+void quantasvezesjogou();
 // ================================================*
 
 // Menu jogo da velha
@@ -59,60 +64,76 @@ void menu()
 
 
 // INICIAR O JOGO, NOMES DOS 2 JOGADORES e qual vai ser "X" e "O".
-void startjogo() {
-	// var jogadores
-	char jogador1[10];
-	char jogador2[10];
+void startjogo() {	
 	// Linha e Coluna, j & i;
 	int linha = 0;
 	int coluna = 0;
+	
 	// Contador
 	int cont = 0;
-	// variave oi é só um teste!
-	int oi = 1;
+	
+	// Verifica se é o jogador 1 ou 2, pode ser modificado depois.
+	int jogador = 1;
+	
 	// Nome dos jogadores
 	printf("Nome do jogador 1 para ser (X)\n");
 	scanf(" %[^\n]s", jogador1);
 	printf("Nome do jogador 1 para ser (O)\n");
 	scanf(" %[^\n]s", jogador2);
 	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
+	
 	// 9 é o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
-	for (cont = 0; cont < 3; cont++)// valor 3 para ser + rapido
+	for (cont = 0; cont < 3; cont++, jogador++)// valor 3 para ser + rapido
 	{
-		// variavel de teste!
-		oi++;
-		printf("qual posicao deseja jogar?\n");
+		printf("Qual posicao deseja jogar?\n");
 		// temporario só pra dizer qual vez tá;
+		/****************************************************                       
+		*						REMOVER						*
+		* Foi colocado valor 1 e 5 para melhorar a contagem *
+		* 1*3 = 3, 5x3 = 15, como tava ia ficar 2*3 = 9,	*
+		* porem podia ter um 1+2 = 3.						*
+		*													*
+		****************************************************/
+		// tem um bug nesse ternario...
 		printf("%d\n", cont);
-			if (oi % 2 == 0){
+			if (jogador % 2 == 0){
 				scanf("%d %d", &linha, &coluna);
-				atribui(1, linha, coluna);
+					((linha >= 1) || (linha <= 3) || (coluna >= 1) || (coluna <= 3)) ? (printf("foi\n")) : (printf("ops\n"));
+				atribui(1, linha, coluna, 1);
 			}
 			else {
 				scanf("%d %d", &linha, &coluna);
-				atribui(2, linha, coluna);
+					((linha >= 1) || (linha <= 3) || (coluna >= 1) || (coluna <= 3)) ? (printf("foi\n")) : (printf("ops\n"));
+					//(linha >= 1 || linha <= 3 || coluna >= 1 || coluna <= 3) ? (printf("foi\n")) : (printf("ops\n"));
+				atribui(5, linha, coluna, 2);
 			}
 		mostramatriz();
 	}
 }
 
 
-// ATRIBUIR VALOR A MATRIZ & POSICAO DA MATRIZ
-void atribui(int valor, int linha, int coluna)
+/*
+* Função criada para atribuir valores a matriz(jogo da velha)
+* e fazer a contagem de quantas vezes o jogador jogou.
+*/
+void atribui(int valor, int linha, int coluna, int player)
 {
-	// linha-1 e coluna-1 pq começa em [0] [0]
+	// jogador == 1, adiciona +1 ao jogador 1;
+	(player == 1) ? (contjogador1++) : (contjogador2++);
+	// linha-1 e coluna-1 pq começa em [0] [0];
 	matriz[linha-1][coluna-1] = valor;
 }
 
 
-// MOSTRA A MATRIZ, JOGO DA VELHA...
-/*
-* Falta colocar as | e ___ pra ficar bonito...
-	
-	1 | 2 | 1
-	1 | 2 | 1
- 	2 | 1 | 2
 
+/*
+* Função criada para mostrar a matriz(Jogo da Velha).
+* Falta colocar as | pra ficar bonito...
+* 	
+*	1 | 2 | 1
+*	1 | 2 | 1
+*	2 | 1 | 2
+*
 */
 void mostramatriz()
 {
@@ -120,12 +141,21 @@ void mostramatriz()
 	//   i   &   J
 	int linha = 0;
 	int coluna = 0;
-	for ( linha=0; linha<3; linha++){
+	for ( linha=0; linha<3; linha++)
+	{
 		printf("\n");
 		for ( coluna=0; coluna<3; coluna++)
-	{
-     printf ("%d", matriz[linha][coluna]);
-  	}
-  }
-  printf("\n");
+		{
+			printf ("\t| %d |", matriz[linha][coluna]);// tabela temporaria!
+  		}
+	}
+	printf("\n");
+}
+
+/*
+* Função criada para mostrar quantas vezes cada jogador jogou,
+* Pode ser aprimorada no futuro ou colocando um printf no main(jogo.c).
+*/
+void quantasvezesjogou(){
+	printf("\nJogador: %s jogou %d vezes\nJogador: %s jogou %d vezes\n", jogador1, contjogador1, jogador2, contjogador2);
 }
