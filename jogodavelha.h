@@ -17,6 +17,9 @@ int contjogador2 = 0;
 char jogador1[10+1];
 char jogador2[10+1];
 
+// Verifica se é o jogador 1 ou 2, pode ser modificado depois.
+int jogador = 0;
+
 // ================================================*
 void menu();
 void startjogo();
@@ -71,11 +74,6 @@ void startjogo() {
 	int linha = 0;
 	int coluna = 0;
 
-	// Verifica se é o jogador 1 ou 2, pode ser modificado depois.
-	int jogador = 0;
-
-	int vez = 0;
-
 	/*
 	* Nome do jogador 1 e 2
 	* " %[^\n]s" serve para não pular a linha quando tiver nome com espaço.
@@ -99,11 +97,12 @@ void startjogo() {
 		* porem podia ter um 1+2 = 3.						*
 		*													*
 		****************************************************/
-		//printf("%d\n", jogador);
-		verificavitoria(3);
 		if (jogador % 2 == 0)
 		{
-			scanf("%d %d", &linha, &coluna);
+			printf("Informe a linha: ");
+			scanf("%d", &linha);
+			printf("Informe a coluna: ");
+			scanf("%d",  &coluna);
 			printf("----\nJogador 1\n");
 			/*coluna e linha >= 1 && coluna e linha >=1;
 			* Caso jogador informe um valor errado o jogo vai entender e vai pedir pra ele jogar novamente;
@@ -121,18 +120,19 @@ void startjogo() {
 				{
 					printf("nao ta zero n\n%d", (matriz[linha-1][coluna-1]));
 					jogador--;
-					contjogador1--;
 				}
 			}
 			else
 			{
 				printf("--\nValor informado nao eh valido\n");
 				jogador--;
-				contjogador1--;
 			}
 		}
 		else {
-			scanf("%d %d", &linha, &coluna);
+			printf("Informe a linha: ");
+			scanf("%d", &linha);
+			printf("Informe a coluna: ");
+			scanf("%d",  &coluna);
 			printf("Jogador 2\n");
 			// coluna e linha >= 1 && coluna e linha >=1;
 			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
@@ -146,17 +146,17 @@ void startjogo() {
 				{
 					printf("nao ta zero n\n%d", (matriz[linha-1][coluna-1]));
 					jogador--;
-					contjogador2--;
 				}
 			}
 			else
 			{
 				printf("--\nValor informado nao eh valido\n");
 				jogador--;
-				contjogador2--;
 			}
 		}
 		mostramatriz();
+		verificavitoria(3);
+		verificavitoria(15);
 	}
 }
 
@@ -177,12 +177,6 @@ void atribui(int valor, int linha, int coluna, int player)
 
 /*
 * Função criada para mostrar a matriz(Jogo da Velha).
-* Falta colocar as | pra ficar bonito...
-*
-*	1 | 2 | 1
-*	1 | 2 | 1
-*	2 | 1 | 2
-*
 */
 void mostramatriz()
 {
@@ -215,35 +209,122 @@ void quantasvezesjogou(){
 
 void verificavitoria(int valor) {
 	//linhas
-	if (matriz[1-1][1-1] + matriz[1-1][2-1] + matriz[1-1][3-1] == valor)
+	if (matriz[1-1][1-1] + matriz[2-1][1-1] + matriz[3-1][1-1] == valor)
 	{
 		printf("1 linha ---\n");
+		if (jogador % 2 == 0)
+		{
+			printf("Jogador 2 Ganhou\n");
+		}
+		else {
+			printf("Jogador 1 Ganhou\n");
+		}
+		//quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+
 	}
 	else if (matriz[2-1][1-1] + matriz[2-1][2-1] + matriz[2-1][3-1] == valor){
 		printf("2  linha\n");
+		printf("1 linha ---\n");
+		if (jogador % 2 == 0)
+		{
+			printf("Jogador 2 Ganhou\n");
+		}
+		else {
+			printf("Jogador 1 Ganhou\n");
+		}
+		//quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+
 	}
 	else if (matriz[3-1][1-1] + matriz[3-1][2-1] + matriz[3-1][3-1] == valor)
 	{
 		printf("3 linha\n");
+		printf("1 linha ---\n");
+		if (jogador % 2 == 0)
+		{
+			printf("Jogador 2 Ganhou\n");
+		}
+		else {
+			printf("Jogador 1 Ganhou\n");
+		}
+		//quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+
 	}
 	// colunas
 	else if (matriz[1-1][1-1] + matriz[2-1][1-1] + matriz[2-1][3-1] == valor){
 		printf("1  coluna\n");
+		printf("1 linha ---\n");
+		if (jogador % 2 == 0)
+		{
+			printf("Jogador 2 Ganhou\n");
+		}
+		else {
+			printf("Jogador 1 Ganhou\n");
+		}
+		//quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+
 	}
 	else if (matriz[2-1][1-1] + matriz[2-1][2-1] + matriz[2-1][3-1] == valor){
 		printf("2  coluna\n");
+		printf("1 linha ---\n");
+		if (jogador % 2 == 0)
+		{
+			printf("Jogador 2 Ganhou\n");
+		}
+		else {
+			printf("Jogador 1 Ganhou\n");
+		}
+		//quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+
 	}
 	else if (matriz[3-1][1-1] + matriz[3-1][2-1] + matriz[3-1][3-1] == valor){
 			printf("1  coluna\n");
+		printf("1 linha ---\n");
+		if (jogador % 2 == 0)
+		{
+			printf("Jogador 2 Ganhou\n");
+		}
+		else {
+			printf("Jogador 1 Ganhou\n");
+		}
+		//quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+
 		}
 	// x de na /
 	else if (matriz[3-1][1-1] + matriz[2-1][2-1] + matriz[1-1][3-1] == valor)
 	{
 		printf("x /\n");
+		printf("1 linha ---\n");
+		if (jogador % 2 == 0)
+		{
+			printf("Jogador 2 Ganhou\n");
+		}
+		else {
+			printf("Jogador 1 Ganhou\n");
+		}
+		//quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+
 	}
 	/* x na \ */
 	else if (matriz[1-1][1-1] + matriz[2-1][2-1] + matriz[3-1][3-1] == valor)
 	{
 		printf("x \\n");
+		printf("1 linha ---\n");
+		if (jogador % 2 == 0)
+		{
+			printf("Jogador 2 Ganhou\n");
+		}
+		else {
+			printf("Jogador 1 Ganhou\n");
+		}
+		//quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+
 	}
 }
