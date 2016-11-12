@@ -23,6 +23,7 @@ void startjogo();
 void atribui(int valor, int linha, int coluna, int player);
 void mostramatriz();
 void quantasvezesjogou();
+void verificavitoria(int valor);
 // ================================================*
 
 // Menu jogo da velha
@@ -86,7 +87,7 @@ void startjogo() {
 	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
 
 	// 9 jogador o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
-	for (jogador = 0; jogador < 3; jogador++)// valor 3 para ser + rapido
+	for (jogador = 0; jogador < 9; jogador++)// valor 3 para ser + rapido
 	{
 		printf("Qual posicao deseja jogar?\n");
 		mostramatriz();
@@ -99,23 +100,9 @@ void startjogo() {
 		*													*
 		****************************************************/
 		//printf("%d\n", jogador);
+		verificavitoria(3);
 		if (jogador % 2 == 0)
 		{
-			// while(vez){
-			// 	if(vez % 2 == 0){
-			// 		printf("----\nJogador 1\n");
-			// 		printf("Qual posicao deseja jogar?\n");
-			// 		mostramatriz();
-			// 		scanf("%d %d", &linha, &coluna);					
-			// 	}
-			// 	else
-			// 	{
-			// 		printf("----\nJogador 2\n");
-			// 		printf("Qual posicao deseja jogar?\n");
-			// 		mostramatriz();
-			// 		scanf("%d %d", &linha, &coluna);
-			// 	}
-			// }
 			scanf("%d %d", &linha, &coluna);
 			printf("----\nJogador 1\n");
 			/*coluna e linha >= 1 && coluna e linha >=1;
@@ -135,7 +122,6 @@ void startjogo() {
 					printf("nao ta zero n\n%d", (matriz[linha-1][coluna-1]));
 					jogador--;
 					contjogador1--;
-
 				}
 			}
 			else
@@ -144,7 +130,7 @@ void startjogo() {
 				jogador--;
 				contjogador1--;
 			}
-			}
+		}
 		else {
 			scanf("%d %d", &linha, &coluna);
 			printf("Jogador 2\n");
@@ -154,7 +140,7 @@ void startjogo() {
 				if ((matriz[linha-1][coluna-1]) == 0) // Verifica se a posição é valida e adiciona o valor
 				{
 					printf("O valor tá ZERO %d\n", (matriz[linha][coluna]));
-					atribui(2, linha, coluna, 2);
+					atribui(5, linha, coluna, 2);
 				}
 				else //Nesse else, ele verifica se os valor na posição informada já esta sendo ocupado
 				{
@@ -162,7 +148,6 @@ void startjogo() {
 					jogador--;
 					contjogador2--;
 				}
-
 			}
 			else
 			{
@@ -170,12 +155,10 @@ void startjogo() {
 				jogador--;
 				contjogador2--;
 			}
-
 		}
 		mostramatriz();
 	}
 }
-
 
 
 /*
@@ -224,4 +207,43 @@ void mostramatriz()
 */
 void quantasvezesjogou(){
 	printf("\nJogador: %s jogou %d vezes\nJogador: %s jogou %d vezes\n", jogador1, contjogador1, jogador2, contjogador2);
+}
+
+/*
+* Verifica se o jogador conseguio a pontução 3 ou 15 para vitoria
+*/
+
+void verificavitoria(int valor) {
+	//linhas
+	if (matriz[1-1][1-1] + matriz[1-1][2-1] + matriz[1-1][3-1] == valor)
+	{
+		printf("1 linha ---\n");
+	}
+	else if (matriz[2-1][1-1] + matriz[2-1][2-1] + matriz[2-1][3-1] == valor){
+		printf("2  linha\n");
+	}
+	else if (matriz[3-1][1-1] + matriz[3-1][2-1] + matriz[3-1][3-1] == valor)
+	{
+		printf("3 linha\n");
+	}
+	// colunas
+	else if (matriz[1-1][1-1] + matriz[2-1][1-1] + matriz[2-1][3-1] == valor){
+		printf("1  coluna\n");
+	}
+	else if (matriz[2-1][1-1] + matriz[2-1][2-1] + matriz[2-1][3-1] == valor){
+		printf("2  coluna\n");
+	}
+	else if (matriz[3-1][1-1] + matriz[3-1][2-1] + matriz[3-1][3-1] == valor){
+			printf("1  coluna\n");
+		}
+	// x de na /
+	else if (matriz[3-1][1-1] + matriz[2-1][2-1] + matriz[1-1][3-1] == valor)
+	{
+		printf("x /\n");
+	}
+	/* x na \ */
+	else if (matriz[1-1][1-1] + matriz[2-1][2-1] + matriz[3-1][3-1] == valor)
+	{
+		printf("x \\n");
+	}
 }
