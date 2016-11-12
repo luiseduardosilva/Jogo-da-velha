@@ -29,11 +29,7 @@
 
 // main
 int main() {
-	printf("%d\n", sizeof(char));
 	menu();
-	//mostramatriz(); // removido para teste... mostrar toda vez ao ser jogado!
-	quantasvezesjogou();
-
 	return 0;
 }
 
