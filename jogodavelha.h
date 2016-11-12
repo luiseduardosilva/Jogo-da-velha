@@ -1,5 +1,5 @@
-/*   _                         _        __     __   _ _           
-    | | ___   __ _  ___     __| | __ _  \ \   / /__| | |__   __ _ 
+/*   _                         _        __     __   _ _
+    | | ___   __ _  ___     __| | __ _  \ \   / /__| | |__   __ _
  _  | |/ _ \ / _` |/ _ \   / _` |/ _` |  \ \ / / _ \ | '_ \ / _` |
 | |_| | (_) | (_| | (_) | | (_| | (_| |   \ V /  __/ | | | | (_| |
  \___/ \___/ \__, |\___/   \__,_|\__,_|    \_/ \___|_|_| |_|\__,_|
@@ -45,7 +45,7 @@ void menu()
 	// SWITCH MENU
 	scanf("%d", &valormenu);
 
-	switch (valormenu) 
+	switch (valormenu)
 	{
 		case 1:
 			startjogo();
@@ -65,59 +65,77 @@ void menu()
 
 
 // INICIAR O JOGO, NOMES DOS 2 JOGADORES e quem vai ser "X" e "O".
-void startjogo() {	
+void startjogo() {
 	// Linha e Coluna, j & i;
 	int linha = 0;
 	int coluna = 0;
-	
+
 	// Verifica se é o jogador 1 ou 2, pode ser modificado depois.
 	int jogador = 0;
-	
+
+	int vez = 0;
+
 	/*
 	* Nome do jogador 1 e 2
 	* " %[^\n]s" serve para não pular a linha quando tiver nome com espaço.
 	*/
 	printf("Nome do jogador 1 para ser (X)\n");
 	scanf(" %[^\n]s", jogador1);
-	printf("Nome do jogador 1 para ser (O)\n");
+	printf("Nome do jogador 2 para ser (O)\n");
 	scanf(" %[^\n]s", jogador2);
 	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
-	
+
 	// 9 jogador o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
 	for (jogador = 0; jogador < 3; jogador++)// valor 3 para ser + rapido
 	{
 		printf("Qual posicao deseja jogar?\n");
+		mostramatriz();
 		// temporario só pra dizer qual vez tá;
-		/****************************************************                       
+		/****************************************************
 		*						REMOVER						*
 		* Foi colocado valor 1 e 5 para melhorar a contagem *
 		* 1*3 = 3, 5x3 = 15, como tava ia ficar 2*3 = 9,	*
 		* porem podia ter um 1+2 = 3.						*
 		*													*
 		****************************************************/
-		printf("%d\n", jogador);
+		//printf("%d\n", jogador);
 		if (jogador % 2 == 0)
 		{
+			// while(vez){
+			// 	if(vez % 2 == 0){
+			// 		printf("----\nJogador 1\n");
+			// 		printf("Qual posicao deseja jogar?\n");
+			// 		mostramatriz();
+			// 		scanf("%d %d", &linha, &coluna);					
+			// 	}
+			// 	else
+			// 	{
+			// 		printf("----\nJogador 2\n");
+			// 		printf("Qual posicao deseja jogar?\n");
+			// 		mostramatriz();
+			// 		scanf("%d %d", &linha, &coluna);
+			// 	}
+			// }
 			scanf("%d %d", &linha, &coluna);
 			printf("----\nJogador 1\n");
 			/*coluna e linha >= 1 && coluna e linha >=1;
 			* Caso jogador informe um valor errado o jogo vai entender e vai pedir pra ele jogar novamente;
 			* jogador --; não vai mudar de jogador;
 			* contjogador1 & contjogador2 para deixar certo a contagem de qts vezes cada jogador jogou.
-			*/ 
+			*/
 			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
 			{
-				if ((matriz[linha][coluna]) == 0)
+				if ((matriz[linha-1][coluna-1]) == 0) // Verifica se a posição é valida e adiciona o valor
 				{
 					printf("O valor tá ZERO %d\n", (matriz[linha][coluna]));
 					atribui(1, linha, coluna, 1);
 				}
-				else
+				else  //Nesse else, ele verifica se os valor na posição informada já esta sendo ocupado 
 				{
-					printf("nao ta zero n\n%d", (matriz[linha][coluna]));
+					printf("nao ta zero n\n%d", (matriz[linha-1][coluna-1]));
 					jogador--;
 					contjogador1--;
-				
+
 				}
 			}
 			else
@@ -126,7 +144,6 @@ void startjogo() {
 				jogador--;
 				contjogador1--;
 			}
-			
 			}
 		else {
 			scanf("%d %d", &linha, &coluna);
@@ -134,26 +151,26 @@ void startjogo() {
 			// coluna e linha >= 1 && coluna e linha >=1;
 			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
 			{
-				if ((matriz[linha][coluna]) == 0)
+				if ((matriz[linha-1][coluna-1]) == 0) // Verifica se a posição é valida e adiciona o valor
 				{
 					printf("O valor tá ZERO %d\n", (matriz[linha][coluna]));
-					atribui(1, linha, coluna, 2);
+					atribui(2, linha, coluna, 2);
 				}
-				else
+				else //Nesse else, ele verifica se os valor na posição informada já esta sendo ocupado
 				{
-					printf("nao ta zero n\n%d", (matriz[linha][coluna]));
+					printf("nao ta zero n\n%d", (matriz[linha-1][coluna-1]));
 					jogador--;
-					contjogador2--;	
+					contjogador2--;
 				}
 
 			}
-			else 
+			else
 			{
 				printf("--\nValor informado nao eh valido\n");
 				jogador--;
-				contjogador2--;	
+				contjogador2--;
 			}
-			
+
 		}
 		mostramatriz();
 	}
@@ -178,7 +195,7 @@ void atribui(int valor, int linha, int coluna, int player)
 /*
 * Função criada para mostrar a matriz(Jogo da Velha).
 * Falta colocar as | pra ficar bonito...
-* 	
+*
 *	1 | 2 | 1
 *	1 | 2 | 1
 *	2 | 1 | 2
