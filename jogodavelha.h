@@ -87,7 +87,7 @@ void startjogo() {
 	// 9 jogador o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
 	for (jogador = 0; jogador < 9; jogador++)// valor 3 para ser + rapido
 	{
-		printf("Qual posicao deseja jogar?\n");
+		printf("\t_____________________\n");
 		mostramatriz();
 		// temporario só pra dizer qual vez tá;
 		/****************************************************
@@ -99,11 +99,13 @@ void startjogo() {
 		****************************************************/
 		if (jogador % 2 == 0)
 		{
+			printf("\t_____________________\n");
+			printf("\n\t\tJogador 1\n");
 			printf("Informe a linha: ");
 			scanf("%d", &linha);
 			printf("Informe a coluna: ");
 			scanf("%d",  &coluna);
-			printf("----\nJogador 1\n");
+			
 			/*coluna e linha >= 1 && coluna e linha >=1;
 			* Caso jogador informe um valor errado o jogo vai entender e vai pedir pra ele jogar novamente;
 			* jogador --; não vai mudar de jogador;
@@ -113,12 +115,10 @@ void startjogo() {
 			{
 				if ((matriz[linha-1][coluna-1]) == 0) // Verifica se a posição é valida e adiciona o valor
 				{
-					printf("O valor tá ZERO %d\n", (matriz[linha][coluna]));
 					atribui(1, linha, coluna, 1);
 				}
 				else  //Nesse else, ele verifica se os valor na posição informada já esta sendo ocupado 
 				{
-					printf("nao ta zero n\n%d", (matriz[linha-1][coluna-1]));
 					jogador--;
 				}
 			}
@@ -129,22 +129,21 @@ void startjogo() {
 			}
 		}
 		else {
+			printf("\t_____________________\n");
+			printf("\n\t\tJogador 2\n");
 			printf("Informe a linha: ");
 			scanf("%d", &linha);
 			printf("Informe a coluna: ");
 			scanf("%d",  &coluna);
-			printf("Jogador 2\n");
 			// coluna e linha >= 1 && coluna e linha >=1;
 			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
 			{
 				if ((matriz[linha-1][coluna-1]) == 0) // Verifica se a posição é valida e adiciona o valor
 				{
-					printf("O valor tá ZERO %d\n", (matriz[linha][coluna]));
 					atribui(5, linha, coluna, 2);
 				}
 				else //Nesse else, ele verifica se os valor na posição informada já esta sendo ocupado
 				{
-					printf("nao ta zero n\n%d", (matriz[linha-1][coluna-1]));
 					jogador--;
 				}
 			}
@@ -154,7 +153,6 @@ void startjogo() {
 				jogador--;
 			}
 		}
-		mostramatriz();
 		verificavitoria(3);
 		verificavitoria(15);
 	}
