@@ -43,7 +43,7 @@ void menu()
 	printf("             |___/\n\n");
 
 
-	printf("\t[1] JOGAR\n\t[2] RANK\n\t[3] CREDITOS\n");
+	printf("\t[1] JOGAR\n\t[2] RANK\n\t[3] CREDITOS\n\t[4] SAIR\n");
 	printf("Escolha uma opcao: ");
 
 	// SWITCH MENU
@@ -59,6 +59,9 @@ void menu()
 			break;
 		case 3:
 			printf("Creditos!\n");
+			break;
+		case 4:
+			exit(EXIT_SUCCESS);
 			break;
 		default:
 			printf("Valor informado nao eh valido!\n");
@@ -209,7 +212,6 @@ void verificavitoria(int valor) {
 	//linhas
 	if (matriz[1-1][1-1] + matriz[1-1][2-1] + matriz[1-1][3-1] == valor)
 	{
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -217,13 +219,11 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 	}
 	else if (matriz[2-1][1-1] + matriz[2-1][2-1] + matriz[2-1][3-1] == valor){
-		printf("2  linha\n");
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -231,14 +231,12 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 	}
 	else if (matriz[3-1][1-1] + matriz[3-1][2-1] + matriz[3-1][3-1] == valor)
 	{
-		printf("3 linha\n");
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -246,14 +244,12 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 	}
 	// colunas
 	else if (matriz[1-1][1-1] + matriz[2-1][1-1] + matriz[3-1][1-1] == valor){
-		printf("1  coluna\n");
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -261,13 +257,11 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 	}
 	else if (matriz[2-1][1-1] + matriz[2-1][2-1] + matriz[2-1][3-1] == valor){
-		printf("2  coluna\n");
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -275,13 +269,11 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 	}
 	else if (matriz[3-1][1-1] + matriz[3-1][2-1] + matriz[3-1][3-1] == valor){
-			printf("1  coluna\n");
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -289,15 +281,13 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 		}
 	// x de na /
 	else if (matriz[3-1][1-1] + matriz[2-1][2-1] + matriz[1-1][3-1] == valor)
 	{
-		printf("x /\n");
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -305,15 +295,13 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 	}
 	/* x na \ */
 	else if (matriz[1-1][1-1] + matriz[2-1][2-1] + matriz[3-1][3-1] == valor)
 	{
-		printf("x \\n");
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -321,15 +309,13 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 	}
 
 	else if (matriz[1-1][2-1] + matriz[2-1][2-1] + matriz[3-1][2-1] == valor)
 	{
-		printf("x \\n");
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -337,15 +323,13 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 	}
 
 	else if (matriz[1-1][3-1] + matriz[2-1][3-1] + matriz[3-1][3-1] == valor)
 	{
-		printf("x \\n");
-		printf("1 linha ---\n");
 		if (jogador % 2 == 0)
 		{
 			printf("Jogador 2 Ganhou\n");
@@ -353,7 +337,7 @@ void verificavitoria(int valor) {
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
-		//quantasvezesjogou();
+		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 
 	}
