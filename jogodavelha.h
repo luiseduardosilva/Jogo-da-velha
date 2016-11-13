@@ -226,7 +226,7 @@ void verificavitoria(int valor) {
 void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6) {
 	if (matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == valor)
 	{
-		if (jogador % 2 == 0)
+		if (!(jogador % 2 == 0))
 		{
 			printf("\t\tJogador 1 Ganhou\n");
 		}
