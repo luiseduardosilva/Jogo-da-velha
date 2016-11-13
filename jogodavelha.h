@@ -235,6 +235,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 		else {
 			printf("Jogador 1 Ganhou\n");
 		}
+		mostramatriz();
 		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 	}
