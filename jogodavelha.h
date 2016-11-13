@@ -230,10 +230,10 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 	{
 		if (jogador % 2 == 0)
 		{
-			printf("Jogador 2 Ganhou\n");
+			printf("\t\tJogador 2 Ganhou\n");
 		}
 		else {
-			printf("Jogador 1 Ganhou\n");
+			printf("\t\tJogador 1 Ganhou\n");
 		}
 		mostramatriz();
 		quantasvezesjogou();
