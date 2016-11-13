@@ -206,11 +206,10 @@ void quantasvezesjogou(){
 }
 
 /*
-* Verifica se o jogador conseguio a pontução 3 ou 15 para vitoria
+* Verifica se o jogador conseguiu a pontução 3 ou 15 para vitoria
 */
 
 void verificavitoria(int valor) {
-	//linhas
 	verificavitorias(valor, 1, 1, 1, 2, 1, 3);
 	verificavitorias(valor, 2, 1, 2, 2, 2, 3);
 	verificavitorias(valor, 3, 1, 3, 2, 3, 1);
@@ -225,7 +224,6 @@ void verificavitoria(int valor) {
 }
 
 void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6) {
-	//linhas
 	if (matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == valor)
 	{
 		if (jogador % 2 == 0)
