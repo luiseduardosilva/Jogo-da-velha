@@ -27,6 +27,7 @@ void atribui(int valor, int linha, int coluna, int player);
 void mostramatriz();
 void quantasvezesjogou();
 void verificavitoria(int valor);
+void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6);
 // ================================================*
 
 // Menu jogo da velha
@@ -210,7 +211,23 @@ void quantasvezesjogou(){
 
 void verificavitoria(int valor) {
 	//linhas
-	if (matriz[1-1][1-1] + matriz[1-1][2-1] + matriz[1-1][3-1] == valor)
+	verificavitorias(valor, 1, 1, 1, 2, 1, 3);
+	verificavitorias(valor, 2, 1, 2, 2, 2, 3);
+	verificavitorias(valor, 3, 1, 3, 2, 3, 1);
+	verificavitorias(valor, 1, 1, 2, 1, 3, 1);
+	verificavitorias(valor, 2, 1, 2, 2, 2, 3);
+	verificavitorias(valor, 3, 1, 3, 2, 3, 3);
+	verificavitorias(valor, 3, 1, 2, 2, 1, 3);
+	verificavitorias(valor, 1, 1, 2, 2, 3, 3);
+	verificavitorias(valor, 1, 2, 2, 1, 3, 2);
+	verificavitorias(valor, 1, 3, 2, 3, 3, 3);
+
+}
+
+void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6) {
+	//linhas
+	int jogador = 2;
+	if (matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == valor)
 	{
 		if (jogador % 2 == 0)
 		{
@@ -221,126 +238,5 @@ void verificavitoria(int valor) {
 		}
 		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
-
 	}
-	else if (matriz[2-1][1-1] + matriz[2-1][2-1] + matriz[2-1][3-1] == valor){
-		if (jogador % 2 == 0)
-		{
-			printf("Jogador 2 Ganhou\n");
-		}
-		else {
-			printf("Jogador 1 Ganhou\n");
-		}
-		quantasvezesjogou();
-		exit(EXIT_SUCCESS);
-
-	}
-	else if (matriz[3-1][1-1] + matriz[3-1][2-1] + matriz[3-1][3-1] == valor)
-	{
-		if (jogador % 2 == 0)
-		{
-			printf("Jogador 2 Ganhou\n");
-		}
-		else {
-			printf("Jogador 1 Ganhou\n");
-		}
-		quantasvezesjogou();
-		exit(EXIT_SUCCESS);
-
-	}
-	// colunas
-	else if (matriz[1-1][1-1] + matriz[2-1][1-1] + matriz[3-1][1-1] == valor){
-		if (jogador % 2 == 0)
-		{
-			printf("Jogador 2 Ganhou\n");
-		}
-		else {
-			printf("Jogador 1 Ganhou\n");
-		}
-		quantasvezesjogou();
-		exit(EXIT_SUCCESS);
-
-	}
-	else if (matriz[2-1][1-1] + matriz[2-1][2-1] + matriz[2-1][3-1] == valor){
-		if (jogador % 2 == 0)
-		{
-			printf("Jogador 2 Ganhou\n");
-		}
-		else {
-			printf("Jogador 1 Ganhou\n");
-		}
-		quantasvezesjogou();
-		exit(EXIT_SUCCESS);
-
-	}
-	else if (matriz[3-1][1-1] + matriz[3-1][2-1] + matriz[3-1][3-1] == valor){
-		if (jogador % 2 == 0)
-		{
-			printf("Jogador 2 Ganhou\n");
-		}
-		else {
-			printf("Jogador 1 Ganhou\n");
-		}
-		quantasvezesjogou();
-		exit(EXIT_SUCCESS);
-
-		}
-	// x de na /
-	else if (matriz[3-1][1-1] + matriz[2-1][2-1] + matriz[1-1][3-1] == valor)
-	{
-		if (jogador % 2 == 0)
-		{
-			printf("Jogador 2 Ganhou\n");
-		}
-		else {
-			printf("Jogador 1 Ganhou\n");
-		}
-		quantasvezesjogou();
-		exit(EXIT_SUCCESS);
-
-	}
-	/* x na \ */
-	else if (matriz[1-1][1-1] + matriz[2-1][2-1] + matriz[3-1][3-1] == valor)
-	{
-		if (jogador % 2 == 0)
-		{
-			printf("Jogador 2 Ganhou\n");
-		}
-		else {
-			printf("Jogador 1 Ganhou\n");
-		}
-		quantasvezesjogou();
-		exit(EXIT_SUCCESS);
-
-	}
-
-	else if (matriz[1-1][2-1] + matriz[2-1][2-1] + matriz[3-1][2-1] == valor)
-	{
-		if (jogador % 2 == 0)
-		{
-			printf("Jogador 2 Ganhou\n");
-		}
-		else {
-			printf("Jogador 1 Ganhou\n");
-		}
-		quantasvezesjogou();
-		exit(EXIT_SUCCESS);
-
-	}
-
-	else if (matriz[1-1][3-1] + matriz[2-1][3-1] + matriz[3-1][3-1] == valor)
-	{
-		if (jogador % 2 == 0)
-		{
-			printf("Jogador 2 Ganhou\n");
-		}
-		else {
-			printf("Jogador 1 Ganhou\n");
-		}
-		quantasvezesjogou();
-		exit(EXIT_SUCCESS);
-
-	}
-
-
 }
