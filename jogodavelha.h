@@ -115,7 +115,7 @@ void startjogo() {
 		if (jogador % 2 == 0)
 		{
 			printf("\t_____________________\n");
-			printf("\n\t\tJogador 1\n");
+			printf("\n\t\t %s \n", jogador1);
 			printf("Informe a linha: ");
 			scanf("%d", &linha);
 			printf("Informe a coluna: ");
@@ -146,7 +146,7 @@ void startjogo() {
 		}
 		else {
 			printf("\t_____________________\n");
-			printf("\n\t\tJogador 2\n");
+			printf("\n\t\t %s \n", jogador2 );
 			printf("Informe a linha: ");
 			scanf("%d", &linha);
 			printf("Informe a coluna: ");
@@ -206,7 +206,7 @@ void mostramatriz()
 		for ( coluna=0; coluna<3; coluna++)
 		{
 		    if(matriz[linha][coluna] == 0)
-                printf("\t|   |");
+                printf("\t|  |");
 		    else{
                 if(matriz[linha][coluna] == 1)
                     printf("\t| X |");
@@ -234,7 +234,7 @@ void quantasvezesjogou(){
 void verificavitoria(int valor) {
 	verificavitorias(valor, 1, 1, 1, 2, 1, 3);
 	verificavitorias(valor, 2, 1, 2, 2, 2, 3);
-	verificavitorias(valor, 3, 1, 3, 2, 3, 1);
+	verificavitorias(valor, 3, 1, 3, 2, 3, 3);
 	verificavitorias(valor, 1, 1, 2, 1, 3, 1);
 	verificavitorias(valor, 2, 1, 2, 2, 2, 3);
 	verificavitorias(valor, 3, 1, 3, 2, 3, 3);
