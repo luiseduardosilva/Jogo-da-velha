@@ -20,6 +20,8 @@ char jogador2[10+1];
 // Verifica se é o jogador 1 ou 2, pode ser modificado depois.
 int jogador = 0;
 
+
+
 // ================================================*
 void menu();
 void startjogo();
@@ -44,8 +46,8 @@ void menu()
 	printf("             |___/\n\n");
 
 
-	printf("\t[1] JOGAR\n\t[2] RANK\n\t[3] CREDITOS\n\t[4] SAIR\n");
-	printf("Escolha uma opcao: ");
+	printf("\t[1] - JOGAR\n\t[2] - RANK\n\t[3] - CREDITOS\n\t[4] - SAIR\n");
+	printf("\n->  ");
 
 	// SWITCH MENU
 	scanf("%d", &valormenu);
@@ -83,9 +85,18 @@ void startjogo() {
 	* " %[^\n]s" serve para não pular a linha quando tiver nome com espaço.
 	*/
 	printf("Nome do jogador 1 para ser (X)\n");
+	printf("-> ");
 	scanf(" %[^\n]s", jogador1);
 	printf("Nome do jogador 2 para ser (O)\n");
+	printf("-> ");
 	scanf(" %[^\n]s", jogador2);
+	system("clear || cls");
+    printf("     _                         _        __     __   _ _           \n");
+	printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
+	printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
+	printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
+	printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
+	printf("             |___/\n\n");
 	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
 
 	// 9 jogador o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
@@ -109,7 +120,8 @@ void startjogo() {
 			scanf("%d", &linha);
 			printf("Informe a coluna: ");
 			scanf("%d",  &coluna);
-			
+			system("clear || cls");
+
 			/*coluna e linha >= 1 && coluna e linha >=1;
 			* Caso jogador informe um valor errado o jogo vai entender e vai pedir pra ele jogar novamente;
 			* jogador --; não vai mudar de jogador;
@@ -121,14 +133,14 @@ void startjogo() {
 				{
 					atribui(1, linha, coluna, 1);
 				}
-				else  //Nesse else, ele verifica se os valor na posição informada já esta sendo ocupado 
+				else  //Nesse else, ele verifica se os valor na posição informada já esta sendo ocupado
 				{
 					jogador--;
 				}
 			}
 			else
 			{
-				printf("--\nValor informado nao eh valido\n");
+				printf("--\nValor informado invalido!\n");
 				jogador--;
 			}
 		}
@@ -139,6 +151,7 @@ void startjogo() {
 			scanf("%d", &linha);
 			printf("Informe a coluna: ");
 			scanf("%d",  &coluna);
+            system("clear || cls");
 			// coluna e linha >= 1 && coluna e linha >=1;
 			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
 			{
@@ -153,12 +166,13 @@ void startjogo() {
 			}
 			else
 			{
-				printf("--\nValor informado nao eh valido\n");
+				printf("--\nValor informado invalido!\n");
 				jogador--;
 			}
 		}
 		verificavitoria(3);
 		verificavitoria(15);
+		//Empate seriam os valores 11 e 7 (2 O e 1 X ou 2 X e 1 O)!
 	}
 }
 
@@ -191,7 +205,15 @@ void mostramatriz()
 		printf("\n");
 		for ( coluna=0; coluna<3; coluna++)
 		{
-			printf ("\t| %d |", matriz[linha][coluna]);// tabela temporaria!
+		    if(matriz[linha][coluna] == 0)
+                printf("\t|   |");
+		    else{
+                if(matriz[linha][coluna] == 1)
+                    printf("\t| X |");
+                else
+                    if(matriz[linha][coluna] == 5)
+                        printf("\t| O |");
+		    }
   		}
 	}
 	printf("\n");
@@ -202,7 +224,7 @@ void mostramatriz()
 * Pode ser aprimorada no futuro ou colocando um printf no main(jogo.c).
 */
 void quantasvezesjogou(){
-	printf("\nJogador: %s jogou %d vezes\nJogador: %s jogou %d vezes\n", jogador1, contjogador1, jogador2, contjogador2);
+	printf("\n - %s jogou %d vezes. \n - %s jogou %d vezes. \n", jogador1, contjogador1, jogador2, contjogador2);
 }
 
 /*
@@ -226,15 +248,56 @@ void verificavitoria(int valor) {
 void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6) {
 	if (matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == valor)
 	{
-		if (!(jogador % 2 == 0))
+		if (jogador % 2 == 0)
 		{
-			printf("\t\tJogador 1 Ganhou\n");
+		    system("clear || cls");
+            printf("     _                         _        __     __   _ _           \n");
+            printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
+            printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
+            printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
+            printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
+            printf("             |___/\n\n");
+            printf("\n\t\tJogador 1 [%s] ganhou!\n", jogador1);
 		}
 		else {
-			printf("\t\tJogador 2 Ganhou\n");
+			system("clear || cls");
+            printf("     _                         _        __     __   _ _           \n");
+            printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
+            printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
+            printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
+            printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
+            printf("             |___/\n\n");
+            printf("\n\t\tJogador 2 [%s] ganhou!\n", jogador2);
 		}
+
 		mostramatriz();
 		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
 	}
+	if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 7 && contjogador1 + contjogador2 == 9){
+        system("clear || cls");
+        printf("     _                         _        __     __   _ _           \n");
+        printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
+        printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
+        printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
+        printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
+        printf("             |___/\n\n");
+        printf("\t\tEmpate!\n");
+        mostramatriz();
+		quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+	}
+    if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 11 && contjogador1 + contjogador2 == 9){
+        system("clear || cls");
+        printf("     _                         _        __     __   _ _           \n");
+        printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
+        printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
+        printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
+        printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
+        printf("             |___/\n\n");
+        printf("\t\tEmpate!\n");
+        mostramatriz();
+		quantasvezesjogou();
+		exit(EXIT_SUCCESS);
+    }
 }
