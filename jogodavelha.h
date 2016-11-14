@@ -115,7 +115,7 @@ void startjogo() {
 		if (jogador % 2 == 0)
 		{
 			printf("\t_____________________\n");
-			printf("\n\t\t %s \n", jogador1);
+			printf("\n\t\t Jogador 1 [%s] \n", jogador1);
 			printf("Informe a linha: ");
 			scanf("%d", &linha);
 			printf("Informe a coluna: ");
@@ -146,7 +146,7 @@ void startjogo() {
 		}
 		else {
 			printf("\t_____________________\n");
-			printf("\n\t\t %s \n", jogador2 );
+			printf("\n\t\t Jogador 2 [%s] \n", jogador2 );
 			printf("Informe a linha: ");
 			scanf("%d", &linha);
 			printf("Informe a coluna: ");
@@ -206,7 +206,7 @@ void mostramatriz()
 		for ( coluna=0; coluna<3; coluna++)
 		{
 		    if(matriz[linha][coluna] == 0)
-                printf("\t|  |");
+                printf("\t|   |");
 		    else{
                 if(matriz[linha][coluna] == 1)
                     printf("\t| X |");
