@@ -20,9 +20,14 @@ char jogador2[10+1];
 // Verifica se é o jogador 1 ou 2, pode ser modificado depois.
 int jogador = 0;
 
+//Barra de titulo
+int barra_titulo = 1;
+
 
 
 // ================================================*
+void nome_jogo();
+void barra_de_titulo();
 void menu();
 void startjogo();
 void atribui(int valor, int linha, int coluna, int player);
@@ -32,19 +37,26 @@ void verificavitoria(int valor);
 void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6);
 // ================================================*
 
-// Menu jogo da velha
-void menu()
-{
-	int valormenu = 0;
+void nome_jogo(){
+    system ("title Jogo da Velha");
+}
 
-	// PRINT MENU
+void barra_de_titulo(){
 	printf("     _                         _        __     __   _ _           \n");
 	printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
 	printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
 	printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
 	printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
 	printf("             |___/\n\n");
+}
 
+// Menu jogo da velha
+void menu()
+{
+	int valormenu = 0;
+
+	// PRINT MENU
+	barra_de_titulo();
 
 	printf("\t[1] - JOGAR\n\t[2] - RANK\n\t[3] - CREDITOS\n\t[4] - SAIR\n");
 	printf("\n->  ");
@@ -91,17 +103,16 @@ void startjogo() {
 	printf("-> ");
 	scanf(" %[^\n]s", jogador2);
 	system("clear || cls");
-    printf("     _                         _        __     __   _ _           \n");
-	printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
-	printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
-	printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
-	printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
-	printf("             |___/\n\n");
+    barra_de_titulo();
 	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
-
+	sleep(2);
+    system("clear || cls");
 	// 9 jogador o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
 	for (jogador = 0; jogador < 9; jogador++)// valor 3 para ser + rapido
 	{
+	    if(barra_titulo == 1){
+            barra_de_titulo();
+	    }
 		printf("\t_____________________\n");
 		mostramatriz();
 		// temporario só pra dizer qual vez tá;
@@ -114,7 +125,7 @@ void startjogo() {
 		****************************************************/
 		if (jogador % 2 == 0)
 		{
-			printf("\t_____________________\n");
+		    printf("\t_____________________\n");
 			printf("\n\t\t Jogador 1 [%s] \n", jogador1);
 			printf("Informe a linha: ");
 			scanf("%d", &linha);
@@ -248,22 +259,12 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 		if (jogador % 2 == 0)
 		{
 		    system("clear || cls");
-            printf("     _                         _        __     __   _ _           \n");
-            printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
-            printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
-            printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
-            printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
-            printf("             |___/\n\n");
+            barra_de_titulo();
             printf("\n\t\tJogador 1 [%s] ganhou!\n", jogador1);
 		}
 		else {
 			system("clear || cls");
-            printf("     _                         _        __     __   _ _           \n");
-            printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
-            printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
-            printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
-            printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
-            printf("             |___/\n\n");
+            barra_de_titulo();
             printf("\n\t\tJogador 2 [%s] ganhou!\n", jogador2);
 		}
 
@@ -273,12 +274,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 	}
 	if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 7 && contjogador1 + contjogador2 == 9){
         system("clear || cls");
-        printf("     _                         _        __     __   _ _           \n");
-        printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
-        printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
-        printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
-        printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
-        printf("             |___/\n\n");
+        barra_de_titulo();
         printf("\t\tEmpate!\n");
         mostramatriz();
 		quantasvezesjogou();
@@ -286,13 +282,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 	}
     if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 11 && contjogador1 + contjogador2 == 9){
         system("clear || cls");
-        printf("     _                         _        __     __   _ _           \n");
-        printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
-        printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
-        printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
-        printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
-        printf("             |___/\n\n");
-        printf("\t\tEmpate!\n");
+        barra_de_titulo();
         mostramatriz();
 		quantasvezesjogou();
 		exit(EXIT_SUCCESS);
