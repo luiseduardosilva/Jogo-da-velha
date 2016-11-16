@@ -54,6 +54,7 @@ void barra_de_titulo(){
 void menu()
 {
 	int valormenu = 0;
+	int valormenu2 = 0;
 
 	// PRINT MENU
 	barra_de_titulo();
@@ -67,13 +68,56 @@ void menu()
 	switch (valormenu)
 	{
 		case 1:
-			startjogo();
+			printf("=====================================================================\n");
+			printf("     _                         _        __     __   _ _           \n");
+			printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
+			printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
+			printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
+			printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
+			printf("             |___/\n\n");
+			
+
+			printf("\t[1] UM JOGADOR\n\t[2] DOIS JOGADORES\n\t[3] VOLTAR AO MENU PRINCIPAL\n\n");
+			printf("Escolha uma opcao: ");
+
+			scanf("%d", &valormenu2);
+
+			switch (valormenu2)
+			{
+				case 1:
+					//FALTA DEFINIR O JOGO CONTRA A MAQUINA;
+					break;
+				case 2:
+					startjogo();
+					break;
+				case 3:
+					menu();
+					break;
+				
+				default:
+					printf("Valor informado nao eh valido!\n");
+					menu();
+			}
+			
 			break;
 		case 2:
 			printf("print Rank\n");
 			break;
 		case 3:
-			printf("Creditos!\n");
+			printf("     _                         _        __     __   _ _           \n");
+			printf("    | | ___   __ _  ___     __| | __ _  \\ \\   / /__| | |__   __ _ \n");
+			printf(" _  | |/ _ \\ / _` |/ _ \\   / _` |/ _` |  \\ \\ / / _ \\ | '_ \\ / _` |\n");
+			printf("| |_| | (_) | (_| | (_) | | (_| | (_| |   \\ V /  __/ | | | | (_| |\n");
+			printf(" \\___/ \\___/ \\__, |\\___/   \\__,_|\\__,_|    \\_/ \\___|_|_| |_|\\__,_|\n");
+			printf("             |___/\n\n");
+
+			printf("Este jogo e o resultado do projeto do terceiro estagio do grupo A da turma do\n");
+			printf("P2 de Ciencia da Computacao - Noite, alunos do professor Renato Atouguia Leite.\n"); 
+			printf("Grupo este formado pelos alunos: Daniel Nathan, Danillo Rodrigues, Luis Eduardo,\n");
+ 			printf("Luis Felipe e Tiago David.\n\n"); 
+ 			printf("O conceito deste jogo e fazer com que o jogador faca todos os movimentos usando\n");
+ 			printf("apenas os comandos do teclado.\n\n\n");
+ 			menu();
 			break;
 		case 4:
 			exit(EXIT_SUCCESS);
