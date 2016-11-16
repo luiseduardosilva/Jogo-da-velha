@@ -17,13 +17,10 @@
 			9 de Novembro de 2016
 */
 
-/*
-* ----- Aviso -----
-* Lembre de não colocar ç e acento!
-*/
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 // jogo
 #include "jogodavelha.h"
 
