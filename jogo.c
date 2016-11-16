@@ -13,7 +13,9 @@
 		https://github.com/LuisFelipeOliveira
 	Danillo Rodrigues:
 		https://github.com/danrodriguess
-	
+	Daniel Nathan:
+		https://github.com/danielnathan1
+		
 			9 de Novembro de 2016
 */
 
