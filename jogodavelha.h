@@ -305,6 +305,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 
 		mostramatriz();
 		quantasvezesjogou();
+		limpar();
 		exit(EXIT_SUCCESS);
 	}
 	if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 7 && contjogador1 + contjogador2 == 9){
@@ -313,6 +314,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
         printf("\t\tEmpate!\n");
         mostramatriz();
 		quantasvezesjogou();
+		limpar();
 		exit(EXIT_SUCCESS);
 	}
     if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 11 && contjogador1 + contjogador2 == 9){
@@ -320,6 +322,15 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
         barra_de_titulo();
         mostramatriz();
 		quantasvezesjogou();
+	    	limpar();
 		exit(EXIT_SUCCESS);
     }
+}
+//Limpar a matriz
+void limpar(){
+	int i=0 , j=0;
+	for(i=0; i<3; i++)
+		for(j=0; j<3; j++){
+			matriz[i][j]=0;
+		}
 }
