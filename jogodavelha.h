@@ -283,6 +283,7 @@ void verificavitoria(int valor) {
 	verificavitorias(valor, 1, 1, 2, 2, 3, 3);
 	verificavitorias(valor, 1, 2, 2, 2, 3, 2);
 	verificavitorias(valor, 1, 3, 2, 3, 3, 3);
+	verificavitorias(valor, 1, 2, 2, 2, 3, 2);
 
 }
 void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6) {
