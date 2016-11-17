@@ -35,6 +35,8 @@ void mostramatriz();
 void quantasvezesjogou();
 void verificavitoria(int valor);
 void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6);
+void limpar();
+void jogar_novamente();
 // ================================================*
 
 void nome_jogo(){
@@ -54,11 +56,11 @@ void barra_de_titulo(){
 void menu()
 {
 	int valormenu = 0;
-	int valormenu2 = 0;
 
 	// PRINT MENU
 	barra_de_titulo();
 
+	printf("* ---------------------------  MENU  ---------------------------- *\n\n");
 	printf("\t[1] - JOGAR\n\t[2] - RANK\n\t[3] - CREDITOS\n\t[4] - SAIR\n");
 	printf("\n->  ");
 
@@ -71,12 +73,13 @@ void menu()
 			system("clear || cls");
 			barra_de_titulo();			
 
-			printf("\t[1] UM JOGADOR\n\t[2] DOIS JOGADORES\n\t[3] VOLTAR AO MENU PRINCIPAL\n\n");
-			printf("Escolha uma opcao: ");
+			printf("* --------------------------  JOGAR  --------------------------- *\n\n");
+			printf("\t[1] UM JOGADOR\n\t[2] DOIS JOGADORES\n\t[3] VOLTAR AO MENU\n\n");
+			printf("-> ");
 
-			scanf("%d", &valormenu2);
+			scanf("%d", &valormenu);
 
-			switch (valormenu2)
+			switch (valormenu)
 			{
 				case 1:
 					//FALTA DEFINIR O JOGO CONTRA A MAQUINA;
@@ -85,6 +88,7 @@ void menu()
 					startjogo();
 					break;
 				case 3:
+					system("clear || cls");
 					menu();
 					break;
 				
@@ -95,18 +99,58 @@ void menu()
 			
 			break;
 		case 2:
-			printf("print Rank\n");
-			break;
-		case 3:
+			system("clear || cls");
 			barra_de_titulo();
 			
-			printf("Este jogo e o resultado do projeto do terceiro estagio do grupo A da turma do\n");
-			printf("P2 de Ciencia da Computacao - Noite, alunos do professor Renato Atouguia Leite.\n"); 
-			printf("Grupo este formado pelos alunos: Daniel Nathan, Danillo Rodrigues, Luis Eduardo,\n");
- 			printf("Luis Felipe e Tiago David.\n\n"); 
- 			printf("O conceito deste jogo e fazer com que o jogador faca todos os movimentos usando\n");
- 			printf("apenas os comandos do teclado.\n\n\n");
- 			menu();
+			printf("* ---------------------------  RANK  ----------------------------- *\n\n");
+			printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
+			printf("-> ");
+
+			scanf("%d", &valormenu);
+
+ 			switch (valormenu)
+			{
+				case 1:
+					system("clear || cls");
+					menu();
+					break;
+				case 2:
+					exit(EXIT_SUCCESS);	
+					break;
+				default:
+					printf("Valor informado nao eh valido!!\n");
+					menu();
+			}
+			break;
+		case 3:
+			system("clear || cls");
+			barra_de_titulo();
+			
+			printf("* -------------------------  CREDITOS  -------------------------- *\n\n");
+			printf("Este jogo e o resultado do projeto do terceiro estagio do grupo A\n");
+			printf("da turma do P2 de Ciencia da Computacao - Noite, alunos do professor\n"); 
+			printf("Renato Atouguia Leite. Grupo este formado pelos alunos: Daniel Nathan,\n");
+ 			printf("Danillo Rodrigues, Luis Eduardo, Luis Felipe e Tiago David.\n\n"); 
+ 			printf("O conceito deste jogo e fazer com que o jogador faca todos os seus\n");
+ 			printf("movimentos usando apenas os comandos do teclado.\n\n");
+			printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
+			printf("-> ");
+
+			scanf("%d", &valormenu);
+
+ 			switch (valormenu)
+			{
+				case 1:
+					system("clear || cls");
+					menu();
+					break;
+				case 2:
+					exit(EXIT_SUCCESS);	
+					break;
+				default:
+					printf("Valor informado nao eh valido!!\n");
+					menu();
+			}
 			break;
 		case 4:
 			exit(EXIT_SUCCESS);
@@ -305,7 +349,6 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 
 		mostramatriz();
 		quantasvezesjogou();
-		limpar();
 		jogar_novamente();
 	}
 	if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 7 && contjogador1 + contjogador2 == 9){
@@ -314,6 +357,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
         printf("\t\tEmpate!\n");
         mostramatriz();
 		quantasvezesjogou();
+		limpar();
 		jogar_novamente();
 	}
     if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 11 && contjogador1 + contjogador2 == 9){
@@ -321,6 +365,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
         barra_de_titulo();
         mostramatriz();
 		quantasvezesjogou();
+		limpar();
 		jogar_novamente();
     }
 }
@@ -335,20 +380,22 @@ void limpar(){
 //Jogar novamente ou sair do jogo
 void jogar_novamente(){
 	int i=0;
-	printf("\n\tJOGAR NOVAMENTE[1] \n\tMENU[2] \n\tSAIR[3]\n \n");
+	printf("\n\t[1] JOGAR NOVAMENTE\n\t[2] VOLTAR AO MENU\n\t[3] SAIR\n\n");
+	printf("-> ");
 	scanf("%d", &i);
 	switch(i){
 		case 1:
+			system("clear || cls");
 			startjogo();
 			break;
 		case 2:
+			system("clear || cls");
 			menu();
 			break;
 		case 3:
 			exit(EXIT_SUCCESS);
 			break;
 		default:
-			printf("Valor invalido");	
+			printf("Valor informado nao eh valido!!\n");	
 	}
 }
-
