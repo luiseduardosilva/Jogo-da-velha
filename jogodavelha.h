@@ -251,7 +251,7 @@ void mostramatriz()
 		for ( coluna=0; coluna<3; coluna++)
 		{
 		    if(matriz[linha][coluna] == 0)
-                printf("\t|   |");
+                printf("\t|  |");
 		    else{
                 if(matriz[linha][coluna] == 1)
                     printf("\t| X |");
@@ -306,7 +306,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 		mostramatriz();
 		quantasvezesjogou();
 		limpar();
-		exit(EXIT_SUCCESS);
+		jogar_novamente();
 	}
 	if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 7 && contjogador1 + contjogador2 == 9){
         system("clear || cls");
@@ -314,16 +314,14 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
         printf("\t\tEmpate!\n");
         mostramatriz();
 		quantasvezesjogou();
-		limpar();
-		exit(EXIT_SUCCESS);
+		jogar_novamente();
 	}
     if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 11 && contjogador1 + contjogador2 == 9){
         system("clear || cls");
         barra_de_titulo();
         mostramatriz();
 		quantasvezesjogou();
-	    	limpar();
-		exit(EXIT_SUCCESS);
+		jogar_novamente();
     }
 }
 //Limpar a matriz
@@ -334,3 +332,23 @@ void limpar(){
 			matriz[i][j]=0;
 		}
 }
+//Jogar novamente ou sair do jogo
+void jogar_novamente(){
+	int i=0;
+	printf("\n\tJOGAR NOVAMENTE[1] \n\tMENU[2] \n\tSAIR[3]\n \n");
+	scanf("%d", &i);
+	switch(i){
+		case 1:
+			startjogo();
+			break;
+		case 2:
+			menu();
+			break;
+		case 3:
+			exit(EXIT_SUCCESS);
+			break;
+		default:
+			printf("Valor invalido");	
+	}
+}
+
