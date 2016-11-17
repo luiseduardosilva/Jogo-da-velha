@@ -68,6 +68,7 @@ void menu()
 	switch (valormenu)
 	{
 		case 1:
+			system("clear || cls");
 			barra_de_titulo();			
 
 			printf("\t[1] UM JOGADOR\n\t[2] DOIS JOGADORES\n\t[3] VOLTAR AO MENU PRINCIPAL\n\n");
@@ -88,7 +89,7 @@ void menu()
 					break;
 				
 				default:
-					printf("Valor informado nao eh valido!\n");
+					printf("Valor informado nao eh valido!!\n");
 					menu();
 			}
 			
@@ -111,8 +112,9 @@ void menu()
 			exit(EXIT_SUCCESS);
 			break;
 		default:
-			printf("Valor informado nao eh valido!\n");
+			printf("Valor informado nao eh valido!2\n");
 			menu();
+			
 	}
 }
 
