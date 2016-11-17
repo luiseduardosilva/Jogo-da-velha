@@ -23,6 +23,10 @@ int jogador = 0;
 //Barra de titulo
 int barra_titulo = 1;
 
+//Menu
+int valormenu = 0;
+
+
 
 
 // ================================================*
@@ -52,61 +56,63 @@ void barra_de_titulo(){
 	printf("             |___/\n\n");
 }
 
+
 // Menu jogo da velha
 void menu()
 {
-	int valormenu = 0;
-
+    system("clear || cls");
 	// PRINT MENU
 	barra_de_titulo();
 
 	printf("* ---------------------------  MENU  ---------------------------- *\n\n");
-	printf("\t[1] - JOGAR\n\t[2] - RANK\n\t[3] - CREDITOS\n\t[4] - SAIR\n");
+	printf("\t[1] - JOGAR\n\t[2] - RANKING\n\t[3] - CREDITOS\n\t[4] - SAIR\n");
 	printf("\n->  ");
 
 	// SWITCH MENU
-	scanf("%d", &valormenu);
+	scanf("%i", &valormenu);
+
 
 	switch (valormenu)
 	{
 		case 1:
 			system("clear || cls");
-			barra_de_titulo();			
+			barra_de_titulo();
 
 			printf("* --------------------------  JOGAR  --------------------------- *\n\n");
 			printf("\t[1] UM JOGADOR\n\t[2] DOIS JOGADORES\n\t[3] VOLTAR AO MENU\n\n");
 			printf("-> ");
 
-			scanf("%d", &valormenu);
+			scanf("%i", &valormenu);
 
 			switch (valormenu)
 			{
 				case 1:
+				    printf("Em andamento...");
 					//FALTA DEFINIR O JOGO CONTRA A MAQUINA;
 					break;
 				case 2:
+				    system("clear || cls");
 					startjogo();
 					break;
 				case 3:
 					system("clear || cls");
 					menu();
 					break;
-				
+
 				default:
-					printf("Valor informado nao eh valido!!\n");
+					printf("Valor informado invalido!\n");
 					menu();
 			}
-			
-			break;
+
 		case 2:
 			system("clear || cls");
 			barra_de_titulo();
-			
+
 			printf("* ---------------------------  RANK  ----------------------------- *\n\n");
 			printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
 			printf("-> ");
 
-			scanf("%d", &valormenu);
+			scanf("%i", &valormenu);
 
  			switch (valormenu)
 			{
@@ -115,28 +121,28 @@ void menu()
 					menu();
 					break;
 				case 2:
-					exit(EXIT_SUCCESS);	
+					exit(EXIT_SUCCESS);
 					break;
 				default:
-					printf("Valor informado nao eh valido!!\n");
+					printf("Valor informado invalido!\n");
 					menu();
 			}
-			break;
+
 		case 3:
 			system("clear || cls");
 			barra_de_titulo();
-			
+
 			printf("* -------------------------  CREDITOS  -------------------------- *\n\n");
 			printf("Este jogo e o resultado do projeto do terceiro estagio do grupo A\n");
-			printf("da turma do P2 de Ciencia da Computacao - Noite, alunos do professor\n"); 
+			printf("da turma do P2 de Ciencia da Computacao - Noite, alunos do professor\n");
 			printf("Renato Atouguia Leite. Grupo este formado pelos alunos: Daniel Nathan,\n");
- 			printf("Danillo Rodrigues, Luis Eduardo, Luis Felipe e Tiago David.\n\n"); 
+ 			printf("Danillo Rodrigues, Luis Eduardo, Luis Felipe e Tiago David.\n\n");
  			printf("O conceito deste jogo e fazer com que o jogador faca todos os seus\n");
  			printf("movimentos usando apenas os comandos do teclado.\n\n");
 			printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
 			printf("-> ");
 
-			scanf("%d", &valormenu);
+			scanf("%i", &valormenu);
 
  			switch (valormenu)
 			{
@@ -145,23 +151,22 @@ void menu()
 					menu();
 					break;
 				case 2:
-					exit(EXIT_SUCCESS);	
+					exit(EXIT_SUCCESS);
 					break;
 				default:
-					printf("Valor informado nao eh valido!!\n");
+					printf("Valor informado invalido!\n");
 					menu();
 			}
-			break;
+
 		case 4:
 			exit(EXIT_SUCCESS);
 			break;
 		default:
-			printf("Valor informado nao eh valido!2\n");
+			printf("Valor informado invalido!\n");
 			menu();
-			
+
 	}
 }
-
 
 
 // INICIAR O JOGO, NOMES DOS 2 JOGADORES e quem vai ser "X" e "O".
@@ -174,12 +179,25 @@ void startjogo() {
 	* Nome do jogador 1 e 2
 	* " %[^\n]s" serve para não pular a linha quando tiver nome com espaço.
 	*/
+	barra_de_titulo();
 	printf("Nome do jogador 1 para ser (X)\n");
 	printf("-> ");
 	scanf(" %[^\n]s", jogador1);
+	if (strlen(jogador1) > 10){
+        printf("Nome muito grande!");
+        sleep(2);
+        system("clear || cls");
+        startjogo();
+	}
 	printf("Nome do jogador 2 para ser (O)\n");
 	printf("-> ");
 	scanf(" %[^\n]s", jogador2);
+	if (strlen(jogador2) > 10){
+        printf("Nome muito grande!");
+        sleep(2);
+        system("clear || cls");
+        startjogo();
+	}
 	system("clear || cls");
     barra_de_titulo();
 	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
@@ -396,6 +414,6 @@ void jogar_novamente(){
 			exit(EXIT_SUCCESS);
 			break;
 		default:
-			printf("Valor informado nao eh valido!!\n");	
+			printf("Valor informado nao eh valido!!\n");
 	}
 }
