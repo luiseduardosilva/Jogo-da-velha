@@ -367,6 +367,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 
 		mostramatriz();
 		quantasvezesjogou();
+		limpar();
 		jogar_novamente();
 	}
 	if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 7 && contjogador1 + contjogador2 == 9){
