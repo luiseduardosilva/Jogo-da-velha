@@ -313,7 +313,7 @@ void mostramatriz()
 		for ( coluna=0; coluna<3; coluna++)
 		{
 		    if(matriz[linha][coluna] == 0)
-                printf("\t|  |");
+                printf("\t|   |");
 		    else{
                 if(matriz[linha][coluna] == 1)
                     printf("\t| X |");
@@ -382,6 +382,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
     if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 11 && contjogador1 + contjogador2 == 9){
         system("clear || cls");
         barra_de_titulo();
+        printf("\t\tEmpate!\n");
         mostramatriz();
 		quantasvezesjogou();
 		limpar();
