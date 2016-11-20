@@ -15,7 +15,6 @@
 		https://github.com/danrodriguess
 	Daniel Nathan:
 		https://github.com/danielnathan1
-
 			9 de Novembro de 2016
 */
 
@@ -23,6 +22,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 // jogo
 #include "jogodavelha.h"
 
@@ -31,4 +31,3 @@ int main() {
 	menu();
 	return 0;
 }
-
