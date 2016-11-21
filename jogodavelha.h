@@ -69,7 +69,7 @@ void menu()
 	printf("\n->  ");
 
 	// SWITCH MENU
-	scanf("%i", &valormenu);
+	scanf("%d", &valormenu);
 
 
 	switch (valormenu)
@@ -82,7 +82,7 @@ void menu()
 			printf("\t[1] UM JOGADOR\n\t[2] DOIS JOGADORES\n\t[3] VOLTAR AO MENU\n\n");
 			printf("-> ");
 
-			scanf("%i", &valormenu);
+			scanf("%d", &valormenu);
 
 			switch (valormenu)
 			{
@@ -112,7 +112,7 @@ void menu()
 			printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
 			printf("-> ");
 
-			scanf("%i", &valormenu);
+			scanf("%d", &valormenu);
 
  			switch (valormenu)
 			{
@@ -142,7 +142,7 @@ void menu()
 			printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
 			printf("-> ");
 
-			scanf("%i", &valormenu);
+			scanf("%d", &valormenu);
 
  			switch (valormenu)
 			{
@@ -370,7 +370,8 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 		limpar();
 		jogar_novamente();
 	}
-	if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 7 && contjogador1 + contjogador2 == 9){
+	// verificação de empate
+	else if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 7 && contjogador1 + contjogador2 == 9){
         system("clear || cls");
         barra_de_titulo();
         printf("\t\tEmpate!\n");
@@ -379,7 +380,8 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 		limpar();
 		jogar_novamente();
 	}
-    if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 11 && contjogador1 + contjogador2 == 9){
+	// verificação de empate
+    else if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 11 && contjogador1 + contjogador2 == 9){
         system("clear || cls");
         barra_de_titulo();
         printf("\t\tEmpate!\n");
