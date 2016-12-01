@@ -9,25 +9,52 @@
 		https://github.com/luiseduardosilva
 	Tiago David:
 		https://github.com/tiagodavid
-	Luís Felipe:
+	LuÃƒÂ­s Felipe:
 		https://github.com/LuisFelipeOliveira
 	Danillo Rodrigues:
 		https://github.com/danrodriguess
-	Daniel Nathan:
-		https://github.com/danielnathan1
+
 			9 de Novembro de 2016
 */
 
-
+/*
+* ----- Aviso -----
+* Lembre de nÃƒÂ£o colocar ÃƒÂ§ e acento!
+*/
+#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
-#include <string.h>
 // jogo
 #include "jogodavelha.h"
 
+//enum para escolha no menu
+ENUM_OPC opc;
+
 // main
 int main() {
+	
+	
 	menu();
-	return 0;
+	
+	opc = opcao;
+		 
+	switch(opc){
+		case JOGAR:
+			startjogo();
+			break;
+		case RANKING:
+			printf("EM ANDAMENTO");
+			break;
+			exit(EXIT_SUCCESS);
+			//depois , retirar o exit_sucess , e colocar opcao para retornar ao menu
+		case CREDITOS:
+			creditos();
+			break;
+			//falta funcao para retornar ao menu e escolher outra opcao
+		case SAIR:
+			printf("\t\nOBRIGADO POR JOGAR!!");
+			exit(EXIT_SUCCESS);
+
+ 	return 0;
+	}
 }
