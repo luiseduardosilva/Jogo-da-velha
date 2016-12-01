@@ -26,7 +26,12 @@ int barra_titulo = 1;
 //Menu
 int valormenu = 0;
 
+//ira atribuir valor a typeenum
 
+int opcao;
+
+//enum utilizada para o menu do jogo , =1 para não começar com 0
+typedef enum {JOGAR=1, RANKING, CREDITOS , SAIR} ENUM_OPC;
 
 
 // ================================================*
@@ -34,6 +39,7 @@ void nome_jogo();
 void barra_de_titulo();
 void menu();
 void startjogo();
+void creditos();
 void atribui(int valor, int linha, int coluna, int player);
 void mostramatriz();
 void quantasvezesjogou();
@@ -57,117 +63,44 @@ void barra_de_titulo(){
 }
 
 
-// Menu jogo da velha
 void menu()
 {
-    system("clear || cls");
-	// PRINT MENU
+	
+	system("clear || cls");
+			// PRINT MENU
 	barra_de_titulo();
-
 	printf("* ---------------------------  MENU  ---------------------------- *\n\n");
 	printf("\t[1] - JOGAR\n\t[2] - RANKING\n\t[3] - CREDITOS\n\t[4] - SAIR\n");
 	printf("\n->  ");
-
-	// SWITCH MENU
+	
 	scanf("%d", &valormenu);
-
-
-	switch (valormenu)
-	{
-		case 1:
-			system("clear || cls");
-			barra_de_titulo();
-
-			printf("* --------------------------  JOGAR  --------------------------- *\n\n");
-			printf("\t[1] UM JOGADOR\n\t[2] DOIS JOGADORES\n\t[3] VOLTAR AO MENU\n\n");
-			printf("-> ");
-
-			scanf("%d", &valormenu);
-
-			switch (valormenu)
-			{
-				case 1:
-				    printf("Em andamento...");
-					//FALTA DEFINIR O JOGO CONTRA A MAQUINA;
-					break;
-				case 2:
-				    system("clear || cls");
-					startjogo();
-					break;
-				case 3:
-					system("clear || cls");
-					menu();
-					break;
-
-				default:
-					printf("Valor informado invalido!\n");
-					menu();
-			}
-
-		case 2:
-			system("clear || cls");
-			barra_de_titulo();
-
-			printf("* ---------------------------  RANK  ----------------------------- *\n\n");
-			printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
-			printf("-> ");
-
-			scanf("%d", &valormenu);
-
- 			switch (valormenu)
-			{
-				case 1:
-					system("clear || cls");
-					menu();
-					break;
-				case 2:
-					exit(EXIT_SUCCESS);
-					break;
-				default:
-					printf("Valor informado invalido!\n");
-					menu();
-			}
-
-		case 3:
-			system("clear || cls");
-			barra_de_titulo();
-
-			printf("* -------------------------  CREDITOS  -------------------------- *\n\n");
-			printf("Este jogo e o resultado do projeto do terceiro estagio do grupo A\n");
-			printf("da turma do P2 de Ciencia da Computacao - Noite, alunos do professor\n");
-			printf("Renato Atouguia Leite. Grupo este formado pelos alunos: Daniel Nathan,\n");
- 			printf("Danillo Rodrigues, Luis Eduardo, Luis Felipe e Tiago David.\n\n");
- 			printf("O conceito deste jogo e fazer com que o jogador faca todos os seus\n");
- 			printf("movimentos usando apenas os comandos do teclado.\n\n");
-			printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
-			printf("-> ");
-
-			scanf("%d", &valormenu);
-
- 			switch (valormenu)
-			{
-				case 1:
-					system("clear || cls");
-					menu();
-					break;
-				case 2:
-					exit(EXIT_SUCCESS);
-					break;
-				default:
-					printf("Valor informado invalido!\n");
-					menu();
-			}
-
-		case 4:
-			exit(EXIT_SUCCESS);
-			break;
-		default:
-			printf("Valor informado invalido!\n");
-			menu();
-
-	}
+	
+	//opcao vai receber o valor da enum
+    do {	
+		switch(valormenu) {
+			case 1 :
+				opcao = JOGAR;
+				break;
+			case 2 :
+				opcao = RANKING;
+				break;
+			case 3 :
+				opcao = CREDITOS;
+				break;
+				//nao funcional ainda falta ter a opcao de redirencionamento para o menu
+			case 4 :
+				opcao = SAIR;
+				break;
+			default :
+				valormenu = 0;
+				printf("VALOR INVALIDO! \n");
+				printf("\t[1] - JOGAR\n\t[2] - RANKING\n\t[3] - CREDITOS\n\t[4] - SAIR\n");
+				scanf("%d", &valormenu);
+				//nao funcional ainda falta ter a opcao de redirencionamento para o menu
+		}	
+	} while(valormenu<1 & valormenu>4);		
+ 	
 }
-
 
 // INICIAR O JOGO, NOMES DOS 2 JOGADORES e quem vai ser "X" e "O".
 void startjogo() {
@@ -282,7 +215,21 @@ void startjogo() {
 		//Empate seriam os valores 11 e 7 (2 O e 1 X ou 2 X e 1 O)!
 	}
 }
+//CREDITOS
+void creditos(){
+	system("clear || cls");
+	barra_de_titulo();
 
+	printf("* -------------------------  CREDITOS  -------------------------- *\n\n");
+	printf("Este jogo e o resultado do projeto do terceiro estagio do grupo A\n");
+	printf("da turma do P2 de Ciencia da Computacao - Noite, alunos do professor\n");
+	printf("Renato Atouguia Leite. Grupo este formado pelos alunos: Daniel Nathan,\n");
+	printf("Danillo Rodrigues, Luis Eduardo, Luis Felipe e Tiago David.\n\n");
+	printf("O conceito deste jogo e fazer com que o jogador faca todos os seus\n");
+	printf("movimentos usando apenas os comandos do teclado.\n\n");
+	printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
+	printf("-> ");
+}
 
 /*
 * Função criada para atribuir valores a matriz(jogo da velha)
