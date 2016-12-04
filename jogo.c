@@ -21,25 +21,29 @@
 * ----- Aviso -----
 * Lembre de nÃƒÂ£o colocar ÃƒÂ§ e acento!
 */
-#include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+
 // jogo
 #include "jogodavelha.h"
-
+// Menu
+#include "menu.h"
+// Jogo saida
+#include "saida.h"
 //enum para escolha no menu
 ENUM_OPC opc;
 
 // main
 int main() {
-	
-	
+	int opc = 0;
 	menu();
-	
 	opc = opcao;
 		 
 	switch(opc){
 		case JOGAR:
+			system("clear || cls");
 			startjogo();
 			break;
 		case RANKING:
