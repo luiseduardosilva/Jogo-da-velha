@@ -45,8 +45,12 @@ void menu()
 				break;
 			default :
 				valormenu = 0;
+				system("clear || cls");
+				barra_de_titulo();
+				printf("* ---------------------------  MENU  ---------------------------- *\n\n");
 				printf("VALOR INVALIDO! \n");
 				printf("\t[1] - JOGAR\n\t[2] - RANKING\n\t[3] - CREDITOS\n\t[4] - SAIR\n");
+				printf("\n->  ");
 				scanf("%d", &valormenu);
 				//nao funcional ainda falta ter a opcao de redirencionamento para o menu
 		}	
