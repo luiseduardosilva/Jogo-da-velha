@@ -25,7 +25,6 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-
 // jogo
 #include "jogodavelha.h"
 // Menu
@@ -37,7 +36,6 @@ ENUM_OPC opc;
 
 // main
 int main() {
-	int opc = 0;
 	menu();
 	opc = opcao;
 		 
