@@ -9,7 +9,7 @@
 		https://github.com/luiseduardosilva
 	Tiago David:
 		https://github.com/tiagodavid
-	LuÃƒÂ­s Felipe:
+	LuÃƒÆ’Ã‚Â­s Felipe:
 		https://github.com/LuisFelipeOliveira
 	Danillo Rodrigues:
 		https://github.com/danrodriguess
@@ -19,7 +19,7 @@
 
 /*
 * ----- Aviso -----
-* Lembre de nÃƒÂ£o colocar ÃƒÂ§ e acento!
+* Lembre de nÃƒÆ’Ã‚Â£o colocar ÃƒÆ’Ã‚Â§ e acento!
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -33,30 +33,35 @@
 #include "saida.h"
 //enum para escolha no menu
 ENUM_OPC opc;
+//int jogar_novamente=0;
+
+
 
 // main
 int main() {
-	menu();
-	opc = opcao;
-		 
-	switch(opc){
+	
+	do{
+		menu();
+		opc= opcao;
+		switch(opc){
 		case JOGAR:
 			system("clear || cls");
 			startjogo();
 			break;
 		case RANKING:
 			printf("EM ANDAMENTO");
+			sleep(1);
+			voltar_menu=1;
 			break;
-			exit(EXIT_SUCCESS);
-			//depois , retirar o exit_sucess , e colocar opcao para retornar ao menu
 		case CREDITOS:
 			creditos();
 			break;
-			//falta funcao para retornar ao menu e escolher outra opcao
 		case SAIR:
 			printf("\t\nOBRIGADO POR JOGAR!!");
 			exit(EXIT_SUCCESS);
 
- 	return 0;
-	}
+ 	
+		}
+	}while(voltar_menu!=2);
+	return 0;
 }
