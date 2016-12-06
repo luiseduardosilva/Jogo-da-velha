@@ -17,11 +17,14 @@ int contjogador2 = 0;
 char jogador1[10+1];
 char jogador2[10+1];
 
-// Verifica se é o jogador 1 ou 2, pode ser modificado depois.
+// Verifica se Ã© o jogador 1 ou 2, pode ser modificado depois.
 int jogador = 0;
 
 //Barra de titulo
 int barra_titulo = 1;
+
+////variavel criada pra atribuir valor a voltar_menu em jogar_novamente()
+int repetir=0;
 
 // ================================================*
 void nome_jogo();
@@ -45,7 +48,7 @@ void startjogo() {
 
 	/*
 	* Nome do jogador 1 e 2
-	* " %[^\n]s" serve para não pular a linha quando se tem nome com espaço.
+	* " %[^\n]s" serve para nÃ£o pular a linha quando se tem nome com espaÃ§o.
 	*/
 	barra_de_titulo();
 	printf("Nome do jogador 1 para ser (X)\n");
@@ -71,7 +74,7 @@ void startjogo() {
 	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
 	sleep(2);
     system("clear || cls");
-	// 9 jogadas... o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz só cabe 9 elementos;
+	// 9 jogadas... o maximo de vezes que pode ser jogado, 3x3 = 9. Matriz sÃ³ cabe 9 elementos;
 	for (jogador = 0; jogador < 9; jogador++)// valor 3 para ser + rapido
 	{
 	    if(barra_titulo == 1){
@@ -98,16 +101,16 @@ void startjogo() {
 
 			/*coluna e linha >= 1 && coluna e linha >=1;
 			* Caso jogador informe um valor errado o jogo vai entender e vai pedir pra ele jogar novamente;
-			* jogador --; não vai mudar de jogador;
+			* jogador --; nÃ£o vai mudar de jogador;
 			* contjogador1 & contjogador2 para deixar certo a contagem de qts vezes cada jogador jogou.
 			*/
 			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
 			{
-				if ((matriz[linha-1][coluna-1]) == 0) // Verifica se a posição é valida e adiciona o valor
+				if ((matriz[linha-1][coluna-1]) == 0) // Verifica se a posiÃ§Ã£o Ã© valida e adiciona o valor
 				{
 					atribui(1, linha, coluna, 1);
 				}
-				else  //Nesse else, ele verifica se os valor na posição informada já esta sendo ocupado
+				else  //Nesse else, ele verifica se os valor na posiÃ§Ã£o informada jÃ¡ esta sendo ocupado
 				{
 					jogador--;
 				}
@@ -129,11 +132,11 @@ void startjogo() {
 			// coluna e linha >= 1 && coluna e linha >=1;
 			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
 			{
-				if ((matriz[linha-1][coluna-1]) == 0) // Verifica se a posição é valida e adiciona o valor
+				if ((matriz[linha-1][coluna-1]) == 0) // Verifica se a posiÃ§Ã£o Ã© valida e adiciona o valor
 				{
 					atribui(5, linha, coluna, 2);
 				}
-				else //Nesse else, ele verifica se os valor na posição informada já esta sendo ocupado
+				else //Nesse else, ele verifica se os valor na posiÃ§Ã£o informada jÃ¡ esta sendo ocupado
 				{
 					jogador--;
 				}
@@ -151,21 +154,21 @@ void startjogo() {
 }
 
 /*
-* Função criada para atribuir valores a matriz(jogo da velha)
+* FunÃ§Ã£o criada para atribuir valores a matriz(jogo da velha)
 * e fazer a contagem de quantas vezes cada jogador jogou.
 */
 void atribui(int valor, int linha, int coluna, int player)
 {
 	// jogador == 1, adiciona +1 ao jogador 1;
 	(player == 1) ? (contjogador1++) : (contjogador2++);
-	// linha-1 e coluna-1 pq começa em [0] [0];
+	// linha-1 e coluna-1 pq comeÃ§a em [0] [0];
 	matriz[linha-1][coluna-1] = valor;
 }
 
 
 
 /*
-* Função criada para imprimir a matriz(Jogo da Velha) na tela.
+* FunÃ§Ã£o criada para imprimir a matriz(Jogo da Velha) na tela.
 */
 void mostramatriz()
 {
@@ -178,7 +181,7 @@ void mostramatriz()
 		printf("\n");
 		for ( coluna=0; coluna<3; coluna++)
 		{
-		    // Onde tiver valor zero na matriz mostrar espaço em branco
+		    // Onde tiver valor zero na matriz mostrar espaÃ§o em branco
 		    if(matriz[linha][coluna] == 0)
 		    {
                 printf("\t|   |");
@@ -205,8 +208,8 @@ void mostramatriz()
 }
 
 /*
-* Verifica todas as posições para uma vitoria 
-* caso tenha 3 pocições em sequencia
+* Verifica todas as posiÃ§Ãµes para uma vitoria 
+* caso tenha 3 pociÃ§Ãµes em sequencia
 * com soma igual a 3 ou 15, temos um ganhador.
 */
 void verificavitoria(int valor) {
@@ -222,14 +225,14 @@ void verificavitoria(int valor) {
 }
 
 /*
-* Verifica se tem uma sequencia de 3 posições com 15 pontos ou com 3 pontos.
-* int valor = 3 ou 15 que é a soma para uma vitoria
+* Verifica se tem uma sequencia de 3 posiÃ§Ãµes com 15 pontos ou com 3 pontos.
+* int valor = 3 ou 15 que Ã© a soma para uma vitoria
 * int valor1, int valor2, int valor3, int valor4, int valor5, int valor6
-* São posições na Matriz 
+* SÃ£o posiÃ§Ãµes na Matriz 
 */
 void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6) {
 	//	Se o valor de uma sequencia da matriz for == valor(3 ou 15)
-	// 	então temos um ganhador
+	// 	entÃ£o temos um ganhador
 	if (matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == valor)
 	{
 		/*
@@ -253,7 +256,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 		limpar();
 		jogar_novamente();
 	}
-	// verificação de empate
+	// verificaÃ§Ã£o de empate
 	else if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 7 && contjogador1 + contjogador2 == 9){
         system("clear || cls");
         barra_de_titulo();
@@ -263,7 +266,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
 		limpar();
 		jogar_novamente();
 	}
-	// verificação de empate
+	// verificaÃ§Ã£o de empate
     else if(matriz[valor1-1][valor2-1] + matriz[valor3-1][valor4-1] + matriz[valor5-1][valor6-1] == 11 && contjogador1 + contjogador2 == 9){
         system("clear || cls");
         barra_de_titulo();
@@ -275,21 +278,25 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
     }
 }
 
+
 //Jogar novamente ou sair do jogo
 void jogar_novamente(){
 	int i=0;
 	printf("\n\t[1] JOGAR NOVAMENTE\n\t[2] VOLTAR AO MENU\n\t[3] SAIR\n\n");
 	printf("-> ");
 	scanf("%d", &i);
+	printf("%d", i);
 	switch(i){
 		case 1:
+			limpar();
 			system("clear || cls");
-			startjogo();
+			repetir=1;
 			break;
+			//nao está funcionando ainda
 		case 2:
-			system("clear || cls");
-			//menu();
+			repetir=1;
 			break;
+			//nao esta funcionando ainda
 		case 3:
 			exit(EXIT_SUCCESS);
 			break;
