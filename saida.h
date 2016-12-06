@@ -7,9 +7,13 @@
 */
 
 // CREDITOS
+
+int valor_do_menu = 0;
+int voltar_menu=0;
 void creditos()
 {
-	int valor_do_menu = 0;
+	
+	//int valor_do_menu = 0;
 	system("clear || cls");
 	barra_de_titulo();
 
@@ -22,27 +26,29 @@ void creditos()
 	printf("movimentos usando apenas os comandos do teclado.\n\n");
 	printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
 	printf("-> ");
-	scanf("%d", &valor_do_menu);
-	while(valor_do_menu != 1 && valor_do_menu != 2)
-	{
-		if(valor_do_menu == 1) 
-		{
-			system("clear || cls");
-			//menu();//tem que ver como vai fazer
-		}
-		else if(valor_do_menu == 2){
-			exit(EXIT_SUCCESS);
-		}
-		else
-		{
+	do{
+		scanf("%d", &voltar_menu);
+		
+		
+		if(voltar_menu<1 || voltar_menu>2){
+			printf("--\nValor informado invalido!\n");
+			sleep(1);
 			system("clear || cls");
 			barra_de_titulo();
 			printf("* -------------------------  CREDITOS  -------------------------- *\n\n");
-			printf("VALOR INFORMADO NAO E VALIDO!\n");
+			printf("Este jogo e o resultado do projeto do terceiro estagio do grupo A\n");
+			printf("da turma do P2 de Ciencia da Computacao - Noite, alunos do professor\n");
+			printf("Renato Atouguia Leite. Grupo este formado pelos alunos: Daniel Nathan,\n");
+			printf("Danillo Rodrigues, Luis Eduardo, Luis Felipe e Tiago David.\n\n");
+			printf("O conceito deste jogo e fazer com que o jogador faca todos os seus\n");
+			printf("movimentos usando apenas os comandos do teclado.\n\n");
 			printf("[1] VOLTAR AO MENU\t[2] SAIR\n\n");
-			scanf("%d", &valor_do_menu);
-		}
-	}
+			printf("-> ");
+			}
+			
+			
+	}while(voltar_menu<1 || voltar_menu>2);
+	
 }
 
 /*
@@ -68,7 +74,7 @@ void barra_de_titulo(){
 }
 
 /*
-* Função criada para mostrar quantas vezes cada jogador jogou,
+* FunÃ§Ã£o criada para mostrar quantas vezes cada jogador jogou,
 * Pode ser aprimorada no futuro ou colocando um printf no main(jogo.c).
 */
 void quantasvezesjogou(){
