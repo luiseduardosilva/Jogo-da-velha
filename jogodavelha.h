@@ -317,7 +317,6 @@ void verificavitoria(int valor) {
 	verificavitorias(valor, 1, 1, 2, 2, 3, 3);
 	verificavitorias(valor, 1, 2, 2, 2, 3, 2);
 	verificavitorias(valor, 1, 3, 2, 3, 3, 3);
-	verificavitorias(valor, 1, 2, 2, 2, 3, 2);
 }
 
 /*
