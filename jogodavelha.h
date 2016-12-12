@@ -30,6 +30,7 @@ int repetir=0;
 void nome_jogo();
 void barra_de_titulo();
 void startjogo();
+void startjogo_solo();
 void creditos();
 void atribui(int valor, int linha, int coluna, int player);
 void mostramatriz();
@@ -153,6 +154,101 @@ void startjogo() {
 	}
 }
 
+void startjogo_solo() {
+	int linha = 0;
+	int coluna = 0;
+	srand(time(NULL));
+    int linha_rand = 1 + rand() % 3;
+    int coluna_rand = 1 + rand() % 3;
+
+
+	barra_de_titulo();
+	printf("Nome do jogador 1 para ser (X)\n");
+	printf("-> ");
+	scanf(" %[^\n]s", jogador1);
+	if (strlen(jogador1) > 10){
+        printf("Nome muito grande!");
+        sleep(2);
+        system("clear || cls");
+        startjogo();
+	}
+	strcpy(jogador2, "Bot");
+	system("clear || cls");
+
+	printf("Jogador: %s ficou com (X), Jogador: %s ficou com (O)\n", jogador1, jogador2);
+	sleep(2);
+    system("clear || cls");
+
+	for (jogador = 0; jogador < 9; jogador++)
+	{
+
+		printf("\t_____________________\n");
+		mostramatriz();
+
+		if (jogador % 2 == 0)
+		{
+		    printf("\t_____________________\n");
+			printf("\n\t\t Jogador 1 [%s] \n", jogador1);
+			printf("Informe a linha: ");
+			scanf("%d", &linha);
+			printf("Informe a coluna: ");
+			scanf("%d",  &coluna);
+			system("clear || cls");
+
+
+			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
+			{
+				if ((matriz[linha-1][coluna-1]) == 0)
+				{
+					atribui(1, linha, coluna, 1);
+				}
+				else
+				{
+					jogador--;
+				}
+			}
+			else
+			{
+				printf("--\nValor informado invalido!\n");
+				jogador--;
+			}
+		}
+		else {
+			printf("\t_____________________\n");
+			printf("\n\t\t Jogador 2 [%s] \n", jogador2 );
+			printf("Informe a linha: %i", linha_rand);
+			linha = linha_rand;
+			sleep(1);
+			printf("\nInforme a coluna: %i", coluna_rand);
+			coluna = coluna_rand;
+			sleep(1);
+            system("clear || cls");
+			// coluna e linha >= 1 && coluna e linha >=1;
+			if (linha >= 1 && linha <=3 && coluna >= 1 && coluna <= 3)
+			{
+				if ((matriz[linha-1][coluna-1]) == 0)
+				{
+					atribui(5, linha, coluna, 2);
+
+				}
+				else
+				{
+					jogador--;
+					linha_rand = 1 + rand() % 3;
+                    coluna_rand = 1 + rand() % 3;
+				}
+			}
+			else
+			{
+				printf("--\nValor informado invalido!\n");
+				jogador--;
+			}
+		}
+		verificavitoria(3);
+		verificavitoria(15);
+    }
+}
+
 /*
 * FunÃ§Ã£o criada para atribuir valores a matriz(jogo da velha)
 * e fazer a contagem de quantas vezes cada jogador jogou.
@@ -208,7 +304,7 @@ void mostramatriz()
 }
 
 /*
-* Verifica todas as posiÃ§Ãµes para uma vitoria 
+* Verifica todas as posiÃ§Ãµes para uma vitoria
 * caso tenha 3 pociÃ§Ãµes em sequencia
 * com soma igual a 3 ou 15, temos um ganhador.
 */
@@ -228,7 +324,7 @@ void verificavitoria(int valor) {
 * Verifica se tem uma sequencia de 3 posiÃ§Ãµes com 15 pontos ou com 3 pontos.
 * int valor = 3 ou 15 que Ã© a soma para uma vitoria
 * int valor1, int valor2, int valor3, int valor4, int valor5, int valor6
-* SÃ£o posiÃ§Ãµes na Matriz 
+* SÃ£o posiÃ§Ãµes na Matriz
 */
 void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6) {
 	//	Se o valor de uma sequencia da matriz for == valor(3 ou 15)

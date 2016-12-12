@@ -39,15 +39,19 @@ ENUM_OPC opc;
 
 // main
 int main() {
-	
+
 	do{
 		menu();
 		opc= opcao;
 		switch(opc){
-		case JOGAR:
+		case JOGAR_MULTIPLAYER:
 			system("clear || cls");
 			startjogo();
 			break;
+        case JOGAR_SOLO:
+            system("clear || cls")
+            startjogo_solo();
+            break;
 		case RANKING:
 			printf("EM ANDAMENTO");
 			sleep(1);
@@ -60,7 +64,7 @@ int main() {
 			printf("\t\nOBRIGADO POR JOGAR!!");
 			exit(EXIT_SUCCESS);
 
- 	
+
 		}
 	}while(voltar_menu!=2);
 	return 0;
