@@ -26,6 +26,19 @@ int barra_titulo = 1;
 ////variavel criada pra atribuir valor a voltar_menu em jogar_novamente()
 int repetir=0;
 
+//pontuação
+int pontuacaoWinner = 3;
+
+//variaveis para ranking
+int contRanking = 0;
+int qtd_struct_arq = 0;
+
+//Definindo a estrutura
+typedef struct pos{
+	char nome[10+1];
+	int pontos;
+} ranking_pos;
+
 // ================================================*
 void nome_jogo();
 void barra_de_titulo();
@@ -39,6 +52,8 @@ void verificavitoria(int valor);
 void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4, int valor5, int valor6);
 void limpar();
 void jogar_novamente();
+void salvarRanking();
+void ranking_menu();
 // ================================================*
 
 // INICIAR O JOGO, NOMES DOS 2 JOGADORES e quem vai ser "X" e "O".
@@ -317,6 +332,7 @@ void verificavitoria(int valor) {
 	verificavitorias(valor, 1, 1, 2, 2, 3, 3);
 	verificavitorias(valor, 1, 2, 2, 2, 3, 2);
 	verificavitorias(valor, 1, 3, 2, 3, 3, 3);
+	verificavitorias(valor, 1, 2, 2, 2, 3, 2);
 }
 
 /*
@@ -345,7 +361,7 @@ void verificavitorias(int valor, int valor1, int valor2, int valor3, int valor4,
             barra_de_titulo();
             printf("\n\t\tJogador 2 [%s] ganhou!\n", jogador2);
 		}
-
+		salvarRanking();
 		mostramatriz();
 		quantasvezesjogou();
 		limpar();
@@ -399,3 +415,112 @@ void jogar_novamente(){
 			printf("Valor informado nao eh valido!!\n");
 	}
 }
+
+void ranking_menu(){
+	FILE *arq;
+	ranking_pos *ranking = NULL;
+	int voltar_menu=0;
+
+	//declarando a variavel para struct
+	ranking_pos add;
+
+	system("cls||clear");
+	//abrindo o arquivo
+	arq = fopen("ranking.bat", "r+b");
+
+	//verifica se o arquivo foi criado
+	if(!arq){
+		printf("Impossivel criar o arquivo\n");
+	}
+
+	fseek(arq,0,SEEK_END);
+	qtd_struct_arq = ftell(arq)/sizeof(ranking_pos);
+
+	//Alocando dinamicamente o arquivo no ponteiro
+	ranking = (ranking_pos *)malloc(ftell(arq));
+
+	fseek(arq,0,SEEK_SET);
+	rewind(arq);
+
+	for(contRanking = 0; contRanking <qtd_struct_arq; contRanking++){
+		fread(ranking+contRanking, sizeof(ranking_pos), 1, arq);
+		printf("============================================\n");
+		printf("%s", ranking[contRanking].nome);
+		printf(":%d\n", ranking[contRanking].pontos);
+		printf("============================================\n\n");
+	}
+
+	printf("[1] Voltar ao menu\n");
+	printf("-->");
+	scanf("%d", &voltar_menu);
+
+	fclose(arq);
+}
+
+void salvarRanking(){
+	FILE *arq;
+	ranking_pos *ranking = NULL, *a = NULL;
+	int i = 0;
+	int t = 0;
+	int qtd_registros = 0;
+
+	//abrindo arquivo
+	arq = fopen("ranking.bat", "r+b");
+
+	if(!arq){
+		printf("Impossivel criar o arquivo\n");
+	}
+
+	fseek(arq, 0, SEEK_END);
+
+	qtd_struct_arq = ftell(arq)/sizeof(ranking_pos);
+
+	ranking = (ranking_pos *)malloc(sizeof(ranking_pos)*(qtd_struct_arq+2));
+
+	a = (ranking_pos *)malloc(ftell(arq));
+	rewind(arq);
+
+	for(contRanking = 0; contRanking < qtd_struct_arq; contRanking++){
+		fread(ranking+contRanking, sizeof(ranking_pos), 1, arq);
+		strcpy(a[contRanking].nome, ranking[contRanking].nome);
+		a[contRanking].pontos = ranking[contRanking].pontos;
+	} 
+
+	for(contRanking = 0; contRanking < qtd_struct_arq; contRanking++){
+
+		strcpy(ranking[contRanking].nome, a[contRanking].nome);
+		ranking[contRanking].pontos = a[contRanking].pontos;
+	}
+
+	fclose(arq);
+
+
+	//Abre um arquivo binario para escrever
+	arq = fopen("ranking.bat", "w+b");
+
+	if(!arq){
+		printf("Impossivel criar o arquivo\n");
+	}
+
+	fseek(arq, 0, SEEK_SET);
+
+	if (jogador % 2 == 0)
+		{
+			fflush(stdin);
+			strcpy(ranking[qtd_struct_arq].nome, jogador1);
+			ranking[qtd_struct_arq].pontos = pontuacaoWinner;
+			fwrite(ranking,sizeof(ranking_pos)*(qtd_struct_arq+1), 1, arq);
+			printf("Salvou player1\n");
+		}
+		// vez do jogador for par, Jogador 2 ganhou
+		else {
+			fflush(stdin);
+			strcpy(ranking[qtd_struct_arq].nome, jogador2);
+			ranking[qtd_struct_arq].pontos = pontuacaoWinner;
+    		fwrite(ranking,sizeof(ranking_pos)*(qtd_struct_arq+1), 1, arq);
+			printf("Salvou player 2\n");
+		}
+	fclose(arq);
+	//fwrite(ranking,sizeof(ranking_pos)*(qtd_struct_arq+1), 1, arq);
+}
+

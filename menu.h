@@ -18,7 +18,7 @@ typedef enum {JOGAR_MULTIPLAYER=1, JOGAR_SOLO=2, RANKING, CREDITOS , SAIR} ENUM_
 
 
 
-void menu()
+ENUM_OPC menu(int valormenu)
 {
 	system("clear || cls");
 	// PRINT MENU
@@ -30,8 +30,8 @@ void menu()
 	do{
 		scanf("%d", &valormenu);
 		if(valormenu<1 || valormenu>5){
-
-			printf("Valor Invalido");
+			
+			printf("Valor Invalido\n");
 			sleep(1);
 			system("clear || cls");
 			// PRINT MENU
@@ -46,20 +46,20 @@ void menu()
 	//opcao vai receber o valor da enum
 	switch(valormenu) {
 		case 1 :
-				opcao = JOGAR_MULTIPLAYER;
-				break;
-			case 2 :
-                opcao = JOGAR_SOLO;
-				break;
-			case 3 :
-                opcao = RANKING;
-				break;
-			case 4 :
-				opcao = CREDITOS;
-				break;
-            case 5:
-                opcao = SAIR;
-				break;
+			return JOGAR_MULTIPLAYER;
+			break;
+		case 2 :
+            return JOGAR_SOLO;
+			break;
+		case 3 :
+           	return RANKING;
+			break;
+		case 4 :
+			return CREDITOS;
+			break;
+        case 5:
+           	return SAIR;
+			break;
 	}
 
 

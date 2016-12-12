@@ -25,6 +25,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <time.h>
 // jogo
 #include "jogodavelha.h"
 // Menu
@@ -41,9 +42,12 @@ ENUM_OPC opc;
 int main() {
 
 	do{
-		menu();
-		opc= opcao;
-		switch(opc){
+		// menu();
+		// opc= opcao;
+		printf("* ---------------------------  MENU  ---------------------------- *\n\n");
+		printf("\t[1] - JOGAR MULTIPLAYER\n\t[2] - JOGAR SOLO\n\t[3] - RANKING\n\t[4] - CREDITOS\n\t[5] - SAIR");
+		printf("\n->  ");
+		switch(menu(valormenu)){
 		case JOGAR_MULTIPLAYER:
 			system("clear || cls");
 			startjogo();
@@ -53,15 +57,13 @@ int main() {
             startjogo_solo();
             break;
 		case RANKING:
-			printf("EM ANDAMENTO");
-			sleep(1);
-			voltar_menu=1;
+			ranking_menu();
 			break;
 		case CREDITOS:
 			creditos();
 			break;
 		case SAIR:
-			printf("\t\nOBRIGADO POR JOGAR!!");
+			printf("\t\nOBRIGADO POR JOGAR!!\n\n");
 			exit(EXIT_SUCCESS);
 
 
