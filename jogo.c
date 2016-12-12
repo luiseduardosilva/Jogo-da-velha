@@ -49,7 +49,7 @@ int main() {
 			startjogo();
 			break;
         case JOGAR_SOLO:
-            system("clear || cls")
+            system("clear || cls");
             startjogo_solo();
             break;
 		case RANKING:
