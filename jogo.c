@@ -29,45 +29,42 @@
 // jogo
 #include "jogodavelha.h"
 // Menu
-#include "menu.h"
+// #include "menu.h"
 // Jogo saida
 #include "saida.h"
 //enum para escolha no menu
-ENUM_OPC opc;
+// ENUM_OPC valormenu;
 //int jogar_novamente=0;
-
+int valormenu = 0;
 
 
 // main
 int main() {
-
-	do{
-		// menu();
-		// opc= opcao;
-		printf("* ---------------------------  MENU  ---------------------------- *\n\n");
-		printf("\t[1] - JOGAR MULTIPLAYER\n\t[2] - JOGAR SOLO\n\t[3] - RANKING\n\t[4] - CREDITOS\n\t[5] - SAIR");
-		printf("\n->  ");
+	// int valormenu = 0;
+	system("clear || cls");
+	// PRINT MENU
+	barra_de_titulo();
+	printf("* ---------------------------  MENU  ---------------------------- *\n\n");
+	printf("\t[1] - JOGAR MULTIPLAYER\n\t[2] - JOGAR SOLO\n\t[3] - RANKING\n\t[4] - CREDITOS\n\t[5] - SAIR");
+	printf("\n->  ");
+	scanf("%d", &valormenu);
 		switch(menu(valormenu)){
-		case JOGAR_MULTIPLAYER:
-			system("clear || cls");
-			startjogo();
-			break;
-        case JOGAR_SOLO:
-            system("clear || cls");
-            startjogo_solo();
-            break;
-		case RANKING:
-			ranking_menu();
-			break;
-		case CREDITOS:
-			creditos();
-			break;
-		case SAIR:
-			printf("\t\nOBRIGADO POR JOGAR!!\n\n");
-			exit(EXIT_SUCCESS);
-
-
-		}
-	}while(voltar_menu!=2);
-	return 0;
+			case JOGAR_MULTIPLAYER:
+				system("clear || cls");
+				startjogo();
+				break;
+        	case JOGAR_SOLO:
+            	system("clear || cls");
+            	startjogo_solo();
+            	break;
+			case RANKING:
+				ranking_menu();
+				break;
+			case CREDITOS:
+				creditos();
+				break;
+			case SAIR:
+				printf("\t\nOBRIGADO POR JOGAR!!\n\n");
+				exit(EXIT_SUCCESS);
+		}	
 }
